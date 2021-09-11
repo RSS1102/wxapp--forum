@@ -1,0 +1,49 @@
+<!--pages/usermsg/usermsg.wxml，已发文章-->
+<!-- tabs组件 -->
+<mp-tabs tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper" bindtabclick="onTabCLick"
+  bindchange="onChange" activeClass="tab-bar-title__selected">
+</mp-tabs>
+<view wx:for="{{pagelist}}" class="pagelist"  wx:key="keys" data-item="{{item}}">
+  <view>
+    <!--头像,姓名,kingdom在同一行-->
+    <view class="flex">
+      <!--头像-->
+      <image class="image" src="{{item.avatarUrl}}">
+      </image>
+      <view class="name">
+        <!--姓名-->
+        <view class="nickname">
+          {{item.nickName}}
+        </view>
+        <!--kingdom-->
+        <view class="king">
+          - 王国:{{item.king}}
+        </view>
+      </view>
+    <view class="btn-dele" bindtap="btndele"  data-item="{{item}}">删除</view>
+    </view>
+    <!--标题-->
+    <view class="titleitem" bindtap="gotopics" data-item="{{item}}">
+      <view class="titletfont">标题：</view>
+      <view class="title"> {{item.title}}</view>
+    </view>
+    <!--page内容-->
+    <view class="pageitem" bindtap="gotopics" data-item="{{item}}">
+      <view class="pagefont">内容：</view>
+      <view class="page"> {{item.page}}</view>
+      <view class="pagxq">-详情</view>
+
+    </view>
+    <view class="timees">
+      <!--发布时间-->
+      <view class="time">
+        {{item.time }}
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 弹出确认窗口删除 -->
+<mp-dialog title="您好" show="{{dialogShow1}}" bindbuttontap="tapDialogButton1" buttons="{{buttons1}}">
+  <view>确认删除</view>
+</mp-dialog>

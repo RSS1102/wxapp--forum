@@ -1,0 +1,45 @@
+<!--pages/User/User.wxml-->
+<!--待定的-->
+
+
+<!--需要的 -->
+<view class="page me">
+  <view class="userinfo">
+    <!-- 未登录状态 -->
+    <view wx:if="{{!hasUserInfo && canIUseGetUserProfile }}">
+      <button type="primary" class="btninfo" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <view class="usertext">
+        <!-- 还未登录的提示 -->
+        <text>{{motto}}</text>
+      </view>
+    </view>
+    <!-- 已登录状态 -->
+    <view wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view wx:if="{{Userupdate}}">
+        <view class="btn-update-null" disabled="true">明天更新</view>
+      </view>
+      <block wx:else>
+        <view class="btn-update" bindtap="updateuser"> 更新信息</view>
+      </block>
+    </view>
+  </view>
+
+
+
+
+  <view class="viewtop">
+    <!-- King的 -->
+    <van-cell title="更改您的所属：" is-link value="王国/Kingdom" bindtap="goking" custom-class="btnstyle" />
+    <!-- 隐私说明 -->
+    <van-cell title="隐私说明" is-link bindtap="goprvacy" />
+    <!-- 程序说明-->
+    <van-cell title="程序说明"  is-link  bindtap="goqueston" />
+    <!--用户反馈-->
+    <button open-type="feedback" class="feedbackbtn" >
+      <text> 用户意见反馈 </text>
+    </button>
+  <!--版本说明  -->
+  </view>
+</view>

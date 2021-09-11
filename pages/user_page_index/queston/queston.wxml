@@ -1,0 +1,10 @@
+<!--pages/queston/queston.wxml-->
+<view class="viewstyle">
+    <text decode>
+      对于这个小程序的说明：
+      &nbsp;&nbsp;&nbsp;&nbsp; 1,首先这个小程序是我个人开发的小论坛。
+      &nbsp;&nbsp;&nbsp;&nbsp; 2，这个小程序因为是个人开发，而且又是两个星期内独立学习和制作的， 所以肯定有很多问题和一些不完善的地方，还请大家见谅。
+      &nbsp;&nbsp;&nbsp;&nbsp; 3，对于小程序出现的问题还希望大家能在公众号留言告诉我问题所在，待我有空之时再进行修复。谢谢。
+      &nbsp;&nbsp;&nbsp;&nbsp; 4，对于一些不完善的部分，我也会抽空进行完善和迭代。
+    </text>
+  </view>

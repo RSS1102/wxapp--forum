@@ -1,0 +1,21 @@
+<!--pages/sitkingdom/sitkingdom.wxml-->
+<view class="pagetitle">
+  <text class="pagetitletext">更改King王国</text>
+</view>
+<view>
+  <view><text class="titletitletextone">King:</text></view> 
+  <view> <text class="titletexttwo">(每天只能改一次)</text></view> 
+  <input type="number" bindinput="inputdking" class="send-input" maxlength="4" placeholder="请输入您的王国/King" />
+</view>
+
+<!--每天只能改一次-->
+<!--禁止-->
+<view wx:if="{{nchange}}" wx:key = "sitkingdom"  class="sendbtn">
+  <button  disabled="true" type="primary" bindtap="upking">您今天已经更改</button>
+</view>
+<!--允许-->
+<block wx:else >
+  <view class="sendbtn">
+  <button   type="primary" bindtap="upking">确定更改</button>
+</view>
+</block>

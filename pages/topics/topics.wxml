@@ -1,0 +1,89 @@
+<!--pages/topics/topics.wxml-->
+<view class="pagelist">
+
+    <!--头像,姓名,kingdom在同一行-->
+    <!--头像-->
+    <view class="flex">
+      <image class="image" src="{{topicsdata.avatarUrl}}"> </image>
+      <!--姓名-->
+      <view class="name">
+        <view class="nickname">
+          {{topicsdata.nickName}}
+        </view>
+        <!--kingdom-->
+        <view class="king"> - 王国:{{topicsdata.king}} </view>
+      </view>
+    </view>
+
+    <!--标题-->
+    <view class="titleitem">
+      <view class="titletfont">标题：</view>
+      <view class="title"> {{topicsdata.title}}</view>
+    </view>
+    <!--page内容-->
+    <view class="pageitem">
+      <view class="pagefont">内容：</view>
+      <view class="page"> <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{topicsdata.page}}</text></view>
+    </view>
+    <!-- 图片 -->
+    <view  wx:if="{{topicsdata.uploaderList[0]}}" class="photoview">
+      <image class="photo"src="{{topicsdata.uploaderList[0]}}"></image>
+      <image class="photo" src="{{topicsdata.uploaderList[1]}}"></image>
+      <image class="photo" src="{{topicsdata.uploaderList[2]}}"></image>
+    </view>
+    <!--发布时间-->
+    <view class="timees">
+      <view class="time"> {{topicsdata.time }}</view>
+    </view>
+
+  <view class="btnflex">
+    <!-- 点赞按钮 -->
+  <view  bindtap="btnzan" class="flex">
+    <image class="btnimage" src="{{topicsdata.zan}}" ></image>
+    <text style="margin-right:55px;" >{{topicsdata.zannum}}</text>
+  </view>
+    <!-- 留言按钮 -->
+    <view bindtap="addsendbtn" class="flex">
+      <image class="btnimage" src="{{reply}}"></image>
+      <text style="margin-right:55px;" >{{0}}</text>
+  </view>
+    <!-- 分享按钮 -->
+    <view bindtap="share"  class="flex" >
+      <image class="btnimage"src="{{share}}"></image>
+      <text>{{topicsdata.sharenum}}</text>
+  </view>
+  </view>
+</view>
+<!--提示填登录-->
+<mp-dialog title="您好" show="{{showOneButtonDialog3}}" bindbuttontap="tapDialogButton3" buttons="{{oneButton3}}">
+  <view>您还没有登录</view>
+</mp-dialog>
+
+
+<!-- 留言内容 -->
+<view wx:for="{{leavevmsg}}" wx:key="leavemsg" class="pagelist">
+  <view>
+    <!--头像,姓名,kingdom在同一行-->
+    <!--头像-->
+    <view class="flex">
+      <image class="image" src="{{ item.avatarUrl}}"> </image>
+      <!--姓名-->
+      <view class="name">
+        <view class="nickname">
+          {{item.nickName}}
+        </view>
+        <!--kingdom-->
+        <view class="king"> - 王国:{{ item.king}} </view>
+      </view>
+    </view>
+    <!--page内容-->
+    <view class="pageitem">
+      <view class="pagefont">留言：</view>
+      <view class="page"> <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{item.leave_msg}}</text></view>
+    </view>
+    <!--发布时间-->
+    <view class="timees">
+      <view class="time"> {{item.leave_time}}</view>
+    </view>
+  </view>
+</view>

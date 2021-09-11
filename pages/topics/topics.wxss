@@ -1,0 +1,163 @@
+/* pages/topics/topics.wxss */
+
+.pagelist {
+  background-color: #fcfafa;
+  margin-top: 15rpx;
+  border-color: rgb(255, 244, 231);
+  border-style: ridge;
+}
+
+.image {
+  height: 80rpx;
+  width: 80rpx;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  border-color: rgb(255, 244, 231);
+  border-style: ridge;
+}
+
+/* --设置边框 ，设置姓名,kingdom在同一行--*/
+.name {
+  border-radius: 10rpx;
+  background-color: #f0ab2a;
+  display: flex;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  border-style: ridge;
+}
+
+.king {
+  margin-left: 20rpx;
+
+}
+
+/* --标题--*/
+.titleitem {
+  display: flex;
+
+}
+
+.titletfont {
+  font-weight: bold;
+  font-size: 45rpx;
+}
+
+.title {
+  margin-left: 1rpx;
+  margin-top: 2rpx;
+  font-size: 40rpx;
+
+}
+
+/* --内容--*/
+.pageitem {
+  max-height: 460rpx;
+  /* 内容最高度*/
+  font-size: 45rpx;
+  margin-bottom: 15rpx;
+  display: flex;
+}
+
+.pagefont {
+  margin-left: 1rpx;
+  margin-top: 2rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+
+}
+
+.page {
+  margin-left: 1rpx;
+  margin-top: 2rpx;
+  font-size: 40rpx;
+  max-width: 250px;
+  text-decoration: underline;
+  /*下划线*/
+  text-decoration-color: rgb(116, 172, 187);
+  /*下划线*/
+  /* 指定宽度.*/
+  /* overflow:hidden; /*将超出内容隐藏*/
+  /*  text-overflow:ellipsis; /*IE专用属性，文本溢出时显示省略标记()；其他浏览器不支持。*/
+  /*   white-space:nowrap; 强制内容不换行。强制在同一行内显示所有文本，直到文本结束或者遭遇 br 元素 */
+}
+
+.pagxq {
+  margin-top: 7rpx;
+  margin-left: 2rpx;
+  font-size: 37rpx;
+  font-weight: bold;
+  color: rgb(94, 94, 206);
+}
+/* photo */
+.photoview{
+  display: flex;
+  justify-content: center
+}
+.photo{
+  width: 90px;
+  height: 100px;
+  margin-right: 5px;
+}
+
+/* --时间--*/
+.timees {
+  height: 40rpx;
+  margin-bottom: 30rpx;
+
+}
+
+.time {
+  float: right;
+}
+
+/* 点赞，留言，分享 */
+/* 外部框 */
+.btnflex {
+  width: 100%;
+  display: flex;
+  background-color: #fcfafa;
+  border-color: rgb(255, 244, 231);
+  border-style: ridge;
+  height: 80rpx;
+  /* 居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 按钮图片 */
+.btnimage {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5rpx;
+}
+/* 按钮次数*/
+.btnflex text {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+
+/* --同一行--*/
+.flex {
+  display: flex;
+
+}
+
+.lvavemge {
+  margin-top: 60rpx;
+  /* 上距离 */
+  margin-bottom: 60rpx;
+  /* 下距离 */
+  background: linear-gradient(to right, #f9957f, #f2f5d0, #aebaf8, #c973ff);
+  /* 多色渐变 */
+  width: 80%;
+  -webkit-text-fill-color: black;
+  border-radius: 50rpx;
+}

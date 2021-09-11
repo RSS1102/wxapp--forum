@@ -1,0 +1,7 @@
+<!--pages/prvacy/prvacy.wxml-->
+<view class="viewstyle">
+  <view>用户隐私信息收集说明：</view>
+<text decode>
+   &nbsp;&nbsp;&nbsp;&nbsp; 您好，本小程序收集了您的：头像，用户 名储存在服务器数据库中作为使用。会切实的保护好您的隐私和用户信息安全，绝对不会将其泄露出去，还请您放心使用。
+    </text>
+  </view>

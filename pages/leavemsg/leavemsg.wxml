@@ -1,0 +1,30 @@
+<!--pages/leavemsg/leavemsg.wxml-->
+<view class="pagetitle">
+  <text class="pagetitletext">留言</text>
+</view>
+<view>
+  <text class="titlefontsiez">内容:</text>
+  <view class="send-page">
+    <textarea bindinput="sendleavemasg" adjust-position="true" style="height: 8em" auto-focus="true" maxlength="50"
+      placeholder="请输入内容<4-50个字>" /></view>
+  </view>
+
+    <!--提示为填写内容-->
+    <mp-dialog title="你好" show="{{ showOneButtonDialog}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+        <view>请输入"4-50个个字符字"</view>
+    </mp-dialog>
+
+   
+
+<!--等待一分钟后再次发布-->
+<!--禁止-->
+<view wx:if="{{change}}"   wx:key="key1" class="sendbtn">
+  <button  disabled="true" type="primary" bindtap="sendmsg">请等待一分钟后再次留言</button>
+</view>
+<!--允许-->
+<block wx:else >
+  <view class="sendbtn">
+  <button   type="primary" bindtap="sendmsg">留言</button>
+</view>
+</block>
+

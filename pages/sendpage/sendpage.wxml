@@ -1,0 +1,82 @@
+<!--pages/sendpage/semdpage.wxml-->
+<view class="pagetitle">
+  <view class="pagetitletext">发布文章</view>
+</view>
+<view>
+  <text class="titlefontsize">标题:</text>
+  <input bindinput="sendtitle" class="send-input" maxlength="14" placeholder="请输入标题<14个字以内>" />
+  <text class="titlefontsize">内容:</text>
+  <view class="send-page">
+    <textarea bindinput="sendpage" adjust-position="true" style="height: 4em" auto-focus="true" maxlength="100"
+      placeholder="请输入内容<100个字以内>" />
+  </view>
+</view>
+<view>
+  <!-- 上传图片 -->
+  <view class='ui_cell'>
+    <view class='ui_cell_bd'>图片上传</view>
+    <view class='ui_cell_ft'>{{uploaderNum}}/3</view>
+  </view>
+  <view class='ui_uploader_cell'>
+    <!-- 根据已选择的图片临时路径数组展示图片-->
+    <view class='ui_uploader_item' wx:for="{{uploaderList}}" wx:key="uploaderList">
+      <!-- 删除-->
+      <icon class='ui_uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20"
+        color="red" />
+      <!-- 图片-->
+      <image bindtap='showImg' data-index="{{index}}" src='{{item}}'></image>
+    </view>
+    <!-- 上传按钮+框 -->
+    <view class='ui_uploader' bindtap='upload' wx:if="{{showUpload}}">
+    </view>
+  </view>
+</view>
+
+<!--等待一分钟后再次发布-->
+<!--禁止-->
+<view wx:if="{{nchange}}" class="sendbtn">
+  <button disabled="true" type="primary">请等待一分钟后再次发布</button>
+</view>
+<!--允许-->
+<block wx:else>
+  <view class="sendbtn">
+    <button type="primary" bindtap="MsgCheckText">发布</button>
+  </view>
+</block>
+
+<van-dialog 
+use-slot
+ title="请选择您要发布的位置："
+ show="{{show}}" 
+ confirmButtonText='取消发送'
+>
+<!-- 发布到哪个数据库 -->
+  <button bindtap="btn1" type="primary" style="width:180px; margin-top:20px;">灌水中心</button>
+  <button bindtap="btn2" type="primary" style="width:180px;  margin-top:20px; margin-bottom:20px;">攻略发布</button>
+</van-dialog>
+<!-- 提示是否确认发布
+    <mp-dialog title="你好" show="{{dialogShow}}"  bindbuttontap="tapDialogButton3" buttons="{{buttons}}">
+        <view>是否确认发布文章</view>
+    </mp-dialog> -->
+
+
+
+<!--判断是否有kingdom-->
+<mp-dialog title="你还没有设置王国" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+  <view>请设置您的王国</view>
+</mp-dialog>
+
+<!--提示填登录-->
+<mp-dialog title="您好" show="{{showOneButtonDialog3}}" bindbuttontap="tapDialogButton3" buttons="{{oneButton3}}">
+  <view>您还没有登录</view>
+</mp-dialog>
+
+<!--提示为填写标题，-->
+<mp-dialog title="你好" show="{{showOneButtonDialog1}}" bindbuttontap="tapDialogButton1" buttons="{{oneButton1}}">
+  <view>请填写标题</view>
+</mp-dialog>
+<!--提示为填写内容-->
+<mp-dialog title="你好" show="{{ showOneButtonDialog2}}" bindbuttontap="tapDialogButton2" buttons="{{oneButton2}}">
+  <view>请输入内容</view>
+</mp-dialog>
+

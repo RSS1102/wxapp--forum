@@ -1,0 +1,99 @@
+<!--pages/index/index.wxml-->
+<!-- 提示：没有数据 -->
+<!--按钮-->
+<!-- <view class="msgflex">
+ <input class="inputmsg"  bindinput="inputmsg" style="border-radius:5px;outline: double" maxlength="14" placeholder="搜索：请输入标题<14个字以内>" />
+   <view bindtap="slemsg"class="btnstyle" ><text>搜索</text></view>
+</view> -->
+<!-- tabs组件 -->
+<mp-tabs tabs="{{tabs}}" activeTab="{{activeTab}}" swiperClass="weui-tabs-swiper" bindtabclick="onTabCLick"
+  bindchange="onChange" activeClass="tab-bar-title__selected">
+</mp-tabs>
+<!-- 提示：没有数据 -->
+<!-- <block wx:if="{{totaNum}}"> -->
+  <view wx:if="{{pageNull}}" class="pageNull">
+<text >还没有文章....</text>
+<text>请发布....</text>
+</view>
+<!-- 获取下标  wx:for-index="bindex" -->
+<view wx:for="{{pagelist}}" class="pagelist" wx:key="keys" data-item="{{item}}"  wx:for-index="bindex" >
+  <view bindtap="gotopics" >
+    <!--头像,姓名,kingdom在同一行-->
+    <view class="flex">
+      <!--头像-->
+      <image class="image" src="{{item.avatarUrl}}">
+      </image>
+      <!-- 性别：男 -->
+      <block wx:if="{{item.gender}}">
+        <image class="image" src='/images/sex/man.png' class="sex">
+        </image>
+      </block>
+      <!-- 性别：女 -->
+      <block wx:else>
+        <image class="image" src='/images/sex/woman.png' class="sex">
+        </image>
+      </block>
+      <view class="name">
+        <!--姓名-->
+        <view class="nickname">
+          {{item.nickName}}
+        </view>
+        <!--kingdom-->
+        <view class="king">
+          - 王国:{{item.king}}
+        </view>
+      </view>
+    </view>
+    <!--标题-->
+    <view class="titleitem">
+      <view class="titletfont">标题：</view>
+      <view class="title"> {{item.title}}</view>
+    </view>
+    <!--page内容-->
+    <view class="pageitem">
+      <view class="pagefont">内容：</view>
+      <view class="page"> {{item.page}}</view>
+      <view class="pagxq">-详情</view>
+    </view>
+    <!-- 图片 -->
+    <view wx:if="{{item.uploaderList[0]}}" class="photoview">
+      <image class="photo" src="{{item.uploaderList[0]}}"></image>
+      <image class="photo" src="{{item.uploaderList[1]}}"></image>
+      <image class="photo" src="{{item.uploaderList[2]}}"></image>
+    </view>
+    <view class="timees">
+      <!--发布时间-->
+      <view class="time">
+        {{item.time }}
+      </view>
+    </view>
+
+  </view>
+
+  <view class="btnlist">
+    <!-- 点赞按钮 -->
+    <!-- 获取下标 data-bindex= '{{bindex}}'  -->
+    <view  style="margin-left:15px" class="flex" bindtap="btnzan" data-item="{{item}}" data-bindex= '{{bindex}}' >
+      <image class="btnimage" src="{{item.isZan?'/images/icon/zanHL.png':'/images/icon/zan.png'}}"></image>
+      <text >{{item.zannum}}</text>
+    </view>
+    <!-- 留言按钮 -->
+    <view  class="btnflex" bindtap="gotopics" data-item="{{item}}">
+      <image class="btnimage" src="/images/icon/reply.png"></image>
+      <text>{{item.replynum}}</text>
+    </view>
+    <!-- 分享按钮 -->
+    <view class="btnflex">
+      <button open-type="share" class="btnshare" plain='true' bindtap="btnshare">
+        <image class="btnimage" src="/images/icon/share.png"></image>
+        <text>{{item.sharenum}}</text>
+      </button>
+    </view>
+  </view>
+
+</view>
+
+<!-- </block>
+<block  wx:else>
+  <text>还没有内容，请发布....</text>
+</block> -->

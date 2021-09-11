@@ -1,0 +1,44 @@
+/* pages/sitkingdom/sitkingdom.wxss */
+/* pages/sendpage/semdpage.wxss */
+page {  background-color: #ebe8e8;
+  height: 100%;
+  line-height: 1.6;
+}
+.pagetitle{
+  text-align: center;
+  font-size: 23px;
+  font-weight: bold;
+}
+.pagetitletext{
+  background-color: rgb(229, 223, 241);
+  /* color: red; */
+  border-radius: 10%;
+}
+.titletitletextone{
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 1.5em;
+  color: blue;
+}
+
+.titletexttwo{
+  font-size: 14px;
+  margin-top: 1.5em;
+  /* color: blue; */
+}
+
+.send-input{
+  height: 2.3em;
+  position: relative;
+  background-color: #FFFFFF;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+.send-page{
+  position: relative;
+  background-color: #FFFFFF;
+  font-size: 17px;
+}
+.sendbtn{
+  margin-top: 150rpx;
+}

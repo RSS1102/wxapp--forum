@@ -1,0 +1,22 @@
+/* pages/prvacy/prvacy.wxss */
+.viewstyle{
+  margin-top: 50rpx;
+ 
+ }
+
+
+ .viewstyle view{
+  width: 748rpx;
+  height: 60rpx;
+  border:2rpx solid #acb3ae;
+  font-weight: bold;
+
+ }
+ 
+ .viewstyle text{
+   text-decoration:underline; /*下划线*/
+   text-decoration-color: rgb(116, 172, 187);/*下划线*/
+    font-weight: bold;
+  
+ 
+ }

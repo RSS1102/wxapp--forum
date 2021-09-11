@@ -1,0 +1,10 @@
+/* pages/queston/queston.wxss */
+.viewstyle{
+ margin-top: 50rpx;
+
+}
+.viewstyle x{
+  text-decoration:underline; /*下划线*/
+  text-decoration-color: rgb(116, 172, 187);/*下划线*/
+  font-weight: bold;
+}

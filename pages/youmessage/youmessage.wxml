@@ -1,0 +1,9 @@
+<!--pages/youmessage/youmessage.wxml-->
+<van-cell
+icon="description"
+  is-link
+  title="已发文章"
+  link-type="navigateTo"
+  url="/pages/usermsg/usermsg"
+/>
+

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mp-tabs": "../../node_modules/weui-miniprogram/miniprogram_dist"
+  }
+}
