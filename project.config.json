@@ -17,7 +17,7 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
-    "uglifyFileName": false,
+    "uglifyFileName": true,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
@@ -38,14 +38,12 @@
     "packNpmRelationList": [
       {
         "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./"
+        "miniprogramNpmDistDir": "./miniprogram/"
       }
     ],
     "minifyWXSS": true,
-    "disableUseStrict": false,
-    "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.20.0",
