@@ -1,57 +1,60 @@
 <!--pages/topics/topics.wxml-->
 <view class="pagelist">
 
-    <!--头像,姓名,kingdom在同一行-->
-    <!--头像-->
-    <view class="flex">
-      <image class="image" src="{{topicsdata.avatarUrl}}"> </image>
-      <!--姓名-->
-      <view class="name">
-        <view class="nickname">
-          {{topicsdata.nickName}}
-        </view>
-        <!--kingdom-->
-        <view class="king"> - 王国:{{topicsdata.king}} </view>
+  <!--头像,姓名,kingdom在同一行-->
+  <!--头像-->
+  <view class="flex">
+    <image class="image" src="{{topicsdata.avatarUrl}}"> </image>
+    <!--姓名-->
+    <view class="index-userinfo">
+      <view class="nickname">
+        {{topicsdata.nickName}}
       </view>
+      <!--kingdom-->
+      <view class="king"> - 王国:{{topicsdata.king}} </view>
     </view>
+  </view>
 
-    <!--标题-->
-    <view class="titleitem">
-      <view class="titletfont">标题：</view>
-      <view class="title"> {{topicsdata.title}}</view>
-    </view>
-    <!--page内容-->
-    <view class="pageitem">
-      <view class="pagefont">内容：</view>
-      <view class="page"> <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{topicsdata.page}}</text></view>
-    </view>
-    <!-- 图片 -->
-    <view  wx:if="{{topicsdata.uploaderList[0]}}" class="photoview">
-      <image class="photo"src="{{topicsdata.uploaderList[0]}}"></image>
-      <image class="photo" src="{{topicsdata.uploaderList[1]}}"></image>
-      <image class="photo" src="{{topicsdata.uploaderList[2]}}"></image>
-    </view>
-    <!--发布时间-->
-    <view class="timees">
-      <view class="time"> {{topicsdata.time }}</view>
-    </view>
+  <!--标题-->
+  <view class="title-item">
+    <view class="titlet-col">标题：</view>
+    <view class="title-text"> {{topicsdata.title}}</view>
+  </view>
+  <!--page内容-->
+  <view class="page-item">
+    <view class="page-col">内容：</view>
+    <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{topicsdata.page}}</text>
+  </view>
+  <!-- 图片 -->
+  <view wx:if="{{topicsdata.uploaderList[0]}}" class="photo-view">
+    <image class="photo" src="{{topicsdata.uploaderList[0]}}"></image>
+    <image class="photo" src="{{topicsdata.uploaderList[1]}}"></image>
+    <image class="photo" src="{{topicsdata.uploaderList[2]}}"></image>
+  </view>
+  <!--发布时间-->
+  <view class="time"> {{topicsdata.time }}</view>
 
-  <view class="btnflex">
+
+
+  <view class="btn-list">
     <!-- 点赞按钮 -->
-  <view  bindtap="btnzan" class="flex">
-    <image class="btnimage" src="{{topicsdata.zan}}" ></image>
-    <text style="margin-right:55px;" >{{topicsdata.zannum}}</text>
-  </view>
+    <!-- 获取下标 data-bindex= '{{bindex}}' -->
+    <view class="btn-coin" bindtap="btnzan" data-item="{{item}}" data-bindex='{{bindex}}'>
+      <image class="btn-image" src="{{topicsdata.isZan?'/images/icon/zanHL.png':'/images/icon/zan.png'}}"></image>
+      <text>{{topicsdata.zannum}}</text>
+    </view>
     <!-- 留言按钮 -->
-    <view bindtap="addsendbtn" class="flex">
-      <image class="btnimage" src="{{reply}}"></image>
-      <text style="margin-right:55px;" >{{0}}</text>
-  </view>
+    <view class="btn-coin" bindtap="btnleavems" data-item="{{item}}">
+      <image class="btn-image" src="/images/icon/reply.png"></image>
+      <text>{{topicsdata.replynum}}</text>
+    </view>
     <!-- 分享按钮 -->
-    <view bindtap="share"  class="flex" >
-      <image class="btnimage"src="{{share}}"></image>
-      <text>{{topicsdata.sharenum}}</text>
-  </view>
+    <view class="btn-share">
+      <button open-type="share" class="btnshare" plain='true' bindtap="btnshare">
+        <image class="btn-image" src="/images/icon/share.png"></image>
+        <text>{{topicsdata.sharenum}}</text>
+      </button>
+    </view>
   </view>
 </view>
 <!--提示填登录-->
@@ -61,29 +64,25 @@
 
 
 <!-- 留言内容 -->
-<view wx:for="{{leavevmsg}}" wx:key="leavemsg" class="pagelist">
-  <view>
-    <!--头像,姓名,kingdom在同一行-->
-    <!--头像-->
-    <view class="flex">
-      <image class="image" src="{{ item.avatarUrl}}"> </image>
-      <!--姓名-->
-      <view class="name">
-        <view class="nickname">
-          {{item.nickName}}
-        </view>
-        <!--kingdom-->
-        <view class="king"> - 王国:{{ item.king}} </view>
+<view wx:for="{{leavevmsg}}" wx:key="leavemsg" class="leave-list">
+  <!--头像,姓名,kingdom在同一行-->
+  <!--头像-->
+  <view class="flex">
+    <image class="image" src="{{ item.avatarUrl}}"> </image>
+    <!--姓名-->
+    <view class="index-userinfo">
+      <view class="nickname">
+        {{item.nickName}}
       </view>
-    </view>
-    <!--page内容-->
-    <view class="pageitem">
-      <view class="pagefont">留言：</view>
-      <view class="page"> <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{item.leave_msg}}</text></view>
-    </view>
-    <!--发布时间-->
-    <view class="timees">
-      <view class="time"> {{item.leave_time}}</view>
+      <!--kingdom-->
+      <view class="king"> - 王国:{{ item.king}} </view>
     </view>
   </view>
+  <!--page内容-->
+  <view class="page-item">
+    <view class="page-col">留言：</view>
+    <text decode>&nbsp;&nbsp;&nbsp;&nbsp; {{item.leave_msg}}</text>
+  </view>
+  <!--发布时间-->
+  <view class="leave-time"> {{item.leave_time}}</view>
 </view>

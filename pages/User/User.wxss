@@ -91,6 +91,7 @@
 .feedbackbtn{
   display: flex;
   width: 100% !important;   /* 强制btn宽度100% */
+  height: 40px;
   background-color: rgb(255, 255, 255);
 
 }

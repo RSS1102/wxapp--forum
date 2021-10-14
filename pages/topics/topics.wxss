@@ -1,10 +1,9 @@
 /* pages/topics/topics.wxss */
 
 .pagelist {
-  background-color: #fcfafa;
-  margin-top: 15rpx;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
+  background-color: #f7f7f7;
+  margin-top: 35rpx;
+  border: 2px solid rgb(142, 225, 228);
 }
 
 .image {
@@ -12,19 +11,25 @@
   width: 80rpx;
   margin-top: 10rpx;
   margin-left: 10rpx;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
+  border: 2px ridge rgb(255, 244, 231);
+}
+.sex {
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 35rpx;
+  margin-left: 10rpx;
+
+}
+/* --设置边框 ，设置姓名,kingdom在同一行--*/
+.index-userinfo {
+  border-radius: 6rpx;
+  background-color: #f3e9f8;
+  display: flex;
+  margin-top: 20rpx;
+  margin-left: 15rpx;
+  border: 3px solid #d6bde2;
 }
 
-/* --设置边框 ，设置姓名,kingdom在同一行--*/
-.name {
-  border-radius: 10rpx;
-  background-color: #f0ab2a;
-  display: flex;
-  margin-top: 30rpx;
-  margin-left: 30rpx;
-  border-style: ridge;
-}
 
 .king {
   margin-left: 20rpx;
@@ -32,132 +37,118 @@
 }
 
 /* --标题--*/
-.titleitem {
+.title-item {
+  margin: 5px 0 5px 0;
   display: flex;
-
 }
 
-.titletfont {
+.title-col {
   font-weight: bold;
   font-size: 45rpx;
 }
 
-.title {
-  margin-left: 1rpx;
-  margin-top: 2rpx;
+.title-text {
   font-size: 40rpx;
-
 }
 
 /* --内容--*/
-.pageitem {
+.page-item {
   max-height: 460rpx;
   /* 内容最高度*/
   font-size: 45rpx;
-  margin-bottom: 15rpx;
+  margin-bottom: 10px;
   display: flex;
 }
 
-.pagefont {
-  margin-left: 1rpx;
-  margin-top: 2rpx;
+.page-col {
   font-size: 40rpx;
   font-weight: bold;
 
 }
 
-.page {
+.page-item text{
   margin-left: 1rpx;
   margin-top: 2rpx;
   font-size: 40rpx;
   max-width: 250px;
+  max-height: 73px;
+  word-break: break-all;
   text-decoration: underline;
   /*下划线*/
   text-decoration-color: rgb(116, 172, 187);
-  /*下划线*/
-  /* 指定宽度.*/
-  /* overflow:hidden; /*将超出内容隐藏*/
-  /*  text-overflow:ellipsis; /*IE专用属性，文本溢出时显示省略标记()；其他浏览器不支持。*/
-  /*   white-space:nowrap; 强制内容不换行。强制在同一行内显示所有文本，直到文本结束或者遭遇 br 元素 */
-}
 
-.pagxq {
-  margin-top: 7rpx;
-  margin-left: 2rpx;
-  font-size: 37rpx;
-  font-weight: bold;
-  color: rgb(94, 94, 206);
 }
 /* photo */
-.photoview{
+.photo-view {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
-.photo{
+
+.photo {
   width: 90px;
   height: 100px;
-  margin-right: 5px;
+  margin: 5px;
 }
-
 /* --时间--*/
-.timees {
-  height: 40rpx;
-  margin-bottom: 30rpx;
-
-}
-
 .time {
+  height: 40rpx;
+  margin-bottom: 15rpx;
   float: right;
 }
 
+
+
 /* 点赞，留言，分享 */
 /* 外部框 */
-.btnflex {
-  width: 100%;
+.btn-list {
   display: flex;
+  width: 100%;
   background-color: #fcfafa;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
-  height: 80rpx;
-  /* 居中 */
+  border: 2px solid rgb(142, 225, 228);
+  border-style: ridge none none none;
+  height: 40px;
+}
+
+/* 按钮 */
+.btn-coin {
+  display: flex;
+  width: 33%;
+  height: 40px;
+}
+
+
+button[plain] {
+  display: flex; 
+  border: none;
+  border-color: transparent;
+}
+
+/* 按钮次数*/
+.btn-list text {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 8px;
+  font-weight: bold;
 }
+
+
 /* 按钮图片 */
-.btnimage {
+.btn-image {
   width: 80rpx;
   height: 80rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 5rpx;
+  
 }
-/* 按钮次数*/
-.btnflex text {
-  font-weight: bold;
+.flex{
   display: flex;
-  align-items: center;
-  justify-content: center;
-
 }
-
-
-
-/* --同一行--*/
-.flex {
-  display: flex;
-
+.leave-list{
+    background-color: #f7f7f7;
+  margin-top: 35rpx;
+  border: 2px solid rgb(142, 225, 228);
 }
+.leave-time{
+  height: 40rpx;
+  margin-bottom: 15rpx;
 
-.lvavemge {
-  margin-top: 60rpx;
-  /* 上距离 */
-  margin-bottom: 60rpx;
-  /* 下距离 */
-  background: linear-gradient(to right, #f9957f, #f2f5d0, #aebaf8, #c973ff);
-  /* 多色渐变 */
-  width: 80%;
-  -webkit-text-fill-color: black;
-  border-radius: 50rpx;
 }

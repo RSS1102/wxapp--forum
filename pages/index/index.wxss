@@ -1,26 +1,29 @@
 /* pages/index/index.wxss */
 
 .pagelist {
-  background-color: #fcfafa;
-  margin-top: 15rpx;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
+  background-color: #f7f7f7;
+  margin-top: 35rpx;
+  border: 2px solid rgb(142, 225, 228);
 }
+
 /* tabs */
 .weui-tabs-swiper {
-  background-color: #ecca31;
+  background-color: #474745;
   width: 100%;
   height: 0px;
 }
+
 .weui-tabs-bar__title {
   margin: 0px 10px;
 }
+
 .tab-bar-title__selected {
   font-size: 20px;
   font-weight: bold;
 }
+
 /* 还没有文章内容 */
-.pageNull{
+.pageNull {
   font-size: 17px;
   margin: 15px;
 }
@@ -31,8 +34,6 @@
   display: flex;
   margin-top: 7px;
   margin-left: 5px;
-  
-
 }
 
 /* 搜索输入栏 */
@@ -52,7 +53,6 @@
   width: 55px;
   height: 37px;
   border-radius: 10%;
-
   background-color: rgb(212, 216, 213);
   /* 文字水平垂直居中 */
   display: flex;
@@ -65,8 +65,7 @@
   width: 80rpx;
   margin-top: 10rpx;
   margin-left: 10rpx;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
+  border: 2px ridge rgb(255, 244, 231);
 }
 
 .sex {
@@ -74,60 +73,53 @@
   width: 40rpx;
   margin-top: 35rpx;
   margin-left: 10rpx;
-  border-color: rgb(255, 244, 231);
-  border-style: ridge;
+
 }
 
 /* --设置边框 ，设置姓名,kingdom在同一行--*/
-.name {
-  border-radius: 10rpx;
-  background-color: #f5f1ea;
+.index-userinfo {
+  border-radius: 6rpx;
+  background-color: #f3e9f8;
   display: flex;
   margin-top: 20rpx;
   margin-left: 15rpx;
-  border-style: ridge;
+  border: 3px solid #d6bde2;
 }
 
 .king {
   margin-left: 20rpx;
-
 }
 
 /* --标题--*/
-.titleitem {
+.title-item {
+  margin: 5px 0 5px 0;
   display: flex;
-
 }
 
-.titletfont {
+.title-col {
   font-weight: bold;
   font-size: 45rpx;
 }
 
-.title {
-  margin-left: 1rpx;
-  margin-top: 2rpx;
+.title-text {
   font-size: 40rpx;
-
 }
 
 /* --内容--*/
-.pageitem {
+.page-item {
   height: 70rpx;
   font-size: 45rpx;
-  margin-bottom: 15rpx;
+  margin-bottom: 10px;
   display: flex;
 }
 
-.pagefont {
-  margin-left: 1rpx;
-  margin-top: 2rpx;
+.page-col {
   font-size: 40rpx;
   font-weight: bold;
 
 }
 
-.page {
+.page-text {
   margin-left: 1rpx;
   margin-top: 2rpx;
   font-size: 40rpx;
@@ -141,91 +133,70 @@
   /*强制内容不换行。强制在同一行内显示所有文本，直到文本结束或者遭遇 br 元素*/
 }
 
-.pagxq {
-  margin-top: 7rpx;
-  margin-left: 2rpx;
-  font-size: 37rpx;
-  font-weight: bold;
-  color: rgb(94, 94, 206);
-}
 /* photo */
-.photoview{
+.photo-view {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
-.photo{
+
+.photo {
   width: 90px;
   height: 100px;
-  margin-right: 5px;
+  margin: 5px;
 }
-/* --时间--*/
-.timees {
 
-  height: 40rpx;
-  margin-bottom: 15rpx;
-}
+/* --时间--*/
 
 .time {
+  height: 40rpx;
+  margin-bottom: 15rpx;
   float: right;
-
 }
 
 
 /* --头像,姓名,kingdom在同一行--*/
 .flex {
   display: flex;
-  
 }
-
 
 /* 点赞，留言，分享 */
 /* 外部框 */
-.btnlist{
+.btn-list {
+  display: flex;
   width: 100%;
-  display: flex;
   background-color: #fcfafa;
-  border-color: rgb(255, 244, 231);
+  border: 2px solid rgb(142, 225, 228);
   border-style: ridge none none none;
-  height: 80rpx;
-  /* 居中 */
-  align-items: center;
-  /* justify-content: center; */
-}
-.btnflex {
-  display: flex;
-  margin: 0px 50px 0px  40px;
+  height: 40px;
 }
 
-/* 按钮图片 */
-.btnimage {
-  width: 80rpx;
-  height: 80rpx;
+/* 按钮 */
+.btn-coin {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  
+  width: 33%;
+  height: 40px;
+}
+
+
+button[plain] {
+  display: flex; 
+  border: none;
+  border-color: transparent;
 }
 
 /* 按钮次数*/
-.btnlist text {
-  font-weight: bold;
+.btn-list text {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-left: 8px;
+  font-weight: bold;
 }
 
-/* 分享按钮透明 */
-.btnshare {
-  width: 150rpx;
+
+/* 按钮图片 */
+.btn-image {
+  width: 80rpx;
   height: 80rpx;
-  line-height: 0px;
-  display: flex;
-  background-color: #fcfafa;
-  padding: 0px;
-  border: none;
-}
-button[plain] {
-  border: none;
-  border-color: transparent;
+  
 }

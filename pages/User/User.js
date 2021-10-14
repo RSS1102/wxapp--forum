@@ -41,8 +41,7 @@ Page({
         })
       }
     })
-
-
+    
     wx.cloud.callFunction({
       name: "adduser",
       success(res) {

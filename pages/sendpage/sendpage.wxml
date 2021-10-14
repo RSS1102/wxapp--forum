@@ -35,7 +35,7 @@
 <!--等待一分钟后再次发布-->
 <!--禁止-->
 <view wx:if="{{nchange}}" class="sendbtn">
-  <button disabled="true" type="primary">请等待一分钟后再次发布</button>
+  <button disabled="true" type="primary">一分钟后再发布</button>
 </view>
 <!--允许-->
 <block wx:else>

@@ -3,7 +3,7 @@
 App({
   onLaunch() {
     wx.cloud.init({
-      env:"cloud1-1gwuqx9124efb084"
+      env:"cloudbase-prepaid-3e43w9675b457b"
     })
     // 登录
     wx.login({

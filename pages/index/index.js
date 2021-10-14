@@ -1,11 +1,11 @@
 // pages/index/index.js
-let totaNum0 = 0 //("sendmessage")
-let totaNum1 = 0 //("water-talk")
-const $ = wx.cloud.database().command
-const DBzan = wx.cloud.database().collection('pagezan')
-const DBUser = wx.cloud.database().collection("user")
-const db1 = wx.cloud.database().collection("sendmessage")
-const db2 = wx.cloud.database().collection("water-talk")
+let totaNum = 0 //需要有多少个数据需要加载
+let   matchNum=0;//需要加载第几项的数据
+const $ = wx.cloud.database().command;
+const DBzan = wx.cloud.database().collection('pagezan');
+const DBUser = wx.cloud.database().collection("user");
+const db1 = wx.cloud.database().collection("sendmessage");
+
 let dataes = ""
 let len
 let len1
@@ -37,18 +37,22 @@ Page({
   //页面初始化
   onLoad: function (options) {
     //00
-    db1.count()
+    db1.where({
+      matchNum:0,
+    }).count()
       .then(res => {
-        console.log('db1总共有', res.total)
-        totaNum0 = res.total
+        console.log('db1总共有 0:', res.total)
+        totaNum = res.total
         //判断文章数量是否为'0',如果为'0'，提示还有文章，否则加载数据。
-        if (totaNum0 <= 0) {
+        if (totaNum <= 0) {
           this.setData({
             pageNull: true
           })
         } else {
-          //执行方法获取内容("sendmessage")
-         this.getdatalist();
+          //执行方法,获取第0项。
+          console.log("执行方法,获取第0项。")
+          matchNum=0;
+          this.getdatalist();
         }
       })
       .catch(console.log)
@@ -58,14 +62,6 @@ Page({
    */
   onPullDownRefresh: function () {
     this.getdatalist();
-    //1
-    // if (activeTab == 1) {
-    //   this.setData({
-    //     pagelist: []
-    //   })
-    //   this.getdatalist1()
-    // }
-
     console.log('下拉刷新');
     wx.showNavigationBarLoading() //在标题栏中显示加载
     setTimeout(function () {
@@ -76,26 +72,26 @@ Page({
 
 
   //分页加载数据
-  //0
   getdatalist() {
     //获取pagelist数组的长度
     len = this.data.pagelist.length
+    console.log('len总共有数据：', len)
     //所有数据加载完成
-    if (totaNum0 == len) {
+    if (totaNum == len) {
       wx.showToast({
         title: '数据已经加载完毕!',
       })
       console.log('数据已经加载完毕')
       return
     }
-    console.log('len总共有数据：', len)
     wx.showLoading({
       title: '加载中...',
     })
     wx.cloud.callFunction({
-        name: 'getPageList_zero',
+        name: 'getPageList_cloud',
         data: {
-          len: len
+          len: len,
+          matchNum: matchNum,
         }
       }).then(res => {
         console.log("==============");
@@ -118,52 +114,52 @@ Page({
           })
       })
   },
-  //1
-  getdatalist1() {
-      //获取pagelist数组的长度
-      len = this.data.pagelist.length
-      //所有数据加载完成
-      if (totaNum1 == len) {
-        wx.showToast({
-          title: '数据已经加载完毕!',
-        })
-        console.log('数据已经加载完毕')
-        return
-      }
-      console.log('len总共有数据：', len)
-      wx.showLoading({
-        title: '加载中...',
-      })
-      wx.cloud.callFunction({
-          name: 'getPageList_one',
-          data: {
-            len: len
-          }
-        }).then(res => {
-          console.log("==============");
-          console.log('获取云函数成功', res);
-          console.log('获取云函数第一条成功', res.result.list[0]);
-          //赋值数组，动态绑定
-          this.setData({
-            //拼接数组
-            pagelist: this.data.pagelist.concat(res.result.list)
-          })
-          wx.hideLoading(),
-            wx.showToast({
-              title: '加载成功！',
-            })
-        })
-        .catch(res => {
-          wx.hideLoading(),
-            wx.showToast({
-              title: '加载失败！',
-            })
-        })
-  },
+  // //1
+  // getdatalist1() {
+  //   //获取pagelist数组的长度
+  //   len = this.data.pagelist.length
+  //   //所有数据加载完成
+  //   if (totaNum1 == len) {
+  //     wx.showToast({
+  //       title: '数据已经加载完毕!',
+  //     })
+  //     console.log('数据已经加载完毕')
+  //     return
+  //   }
+  //   console.log('len总共有数据：', len)
+  //   wx.showLoading({
+  //     title: '加载中...',
+  //   })
+  //   wx.cloud.callFunction({
+  //       name: 'getPageList_one',
+  //       data: {
+  //         len: len
+  //       }
+  //     }).then(res => {
+  //       console.log("==============");
+  //       console.log('获取云函数成功', res);
+  //       console.log('获取云函数第一条成功', res.result.list[0]);
+  //       //赋值数组，动态绑定
+  //       this.setData({
+  //         //拼接数组
+  //         pagelist: this.data.pagelist.concat(res.result.list)
+  //       })
+  //       wx.hideLoading(),
+  //         wx.showToast({
+  //           title: '加载成功！',
+  //         })
+  //     })
+  //     .catch(res => {
+  //       wx.hideLoading(),
+  //         wx.showToast({
+  //           title: '加载失败！',
+  //         })
+  //     })
+  // },
 
   //前往详情页：topics
   gotopics(event) {
-    console.log("EVE", event.currentTarget.dataset.item._id)
+    console.log("EVE",  event.currentTarget.dataset.item._id)
     wx.navigateTo({
       url: '/pages/topics/topics?id=' + event.currentTarget.dataset.item._id,
     })
@@ -200,6 +196,7 @@ Page({
    */
   onReachBottom: function () {
     this.getdatalist();
+    //判断第几项
 
   },
   //tabs选项卡
@@ -213,18 +210,21 @@ Page({
     })
     //0,热度推荐
     if (activeTab == 0) {
-      db1.count()
+      matchNum=0;
+      db1.where({
+        matchNum:matchNum,
+      }).count()
         .then(res => {
           console.log('db1总共有', res.total)
-          totaNum0 = res.total
+          totaNum = res.total
           //判断文章数量是否为'0',如果为'0'，提示还有文章，否则加载数据。
-          if (totaNum0 <= 0) {
+          if (totaNum  <= 0) {
             this.setData({
               pageNull: true
             })
           } else {
             //执行方法获取内容("sendmessage")
-           this.getdatalist();
+            this.getdatalist();
           }
         })
         .catch(console.log)
@@ -232,19 +232,21 @@ Page({
 
     //1技术攻略
     if (activeTab == 1) {
-
-      db2.count()
+      matchNum=1
+      db1.where({
+        matchNum: matchNum,
+      }).count()
         .then(res => {
           console.log('db2总共有', res.total)
-          totaNum1 = res.total
+          totaNum= res.total
           //判断文章数量是否为'0',如果为'0'，提示还有文章，否则加载数据。
-          if (totaNum1 <= 0) {
+          if (totaNum  <= 0) {
             this.setData({
               pageNull: true
             })
           } else {
             //执行方法获取内容("water-talk")
-            this.getdatalist1();
+            this.getdatalist();
           }
         })
         .catch(console.log)

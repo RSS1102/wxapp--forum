@@ -25,10 +25,7 @@ Page({
     oneButton3: [{
       text: '确定'
     }],
-    //点赞,留言，分享 默认
-    zan: "../../images/icon/zan.png",
-    reply: "../../images/icon/reply.png",
-    share: "../../images/icon/share.png"
+
 
   },
   //未登录提示
@@ -44,7 +41,7 @@ Page({
 
   onLoad: function (options) {
     //获取文章的id
-    console.log("options", options.id)
+    console.log("options", options)
     msgid = options.id
     db
       .doc(msgid)
@@ -59,11 +56,6 @@ Page({
       .catch(res => {
         console.log("请求失败", res)
       })
-    //获取改openid用户的信息
-    // db4.where({
-    //   _openid: msgopenid,
-    // }).get({
-    // })
   },
 
   //留言跳转按钮
@@ -158,7 +150,23 @@ Page({
       url: '/pages/leavemsg/leavemsg?id=' + msgid,
     })
   },
-
-
-
+  changeData:function(ops){
+    let options=ops
+    console.log("options=",options) 
+    msgid = options
+    db
+      .doc(msgid)
+      .get()
+      .then(res => {
+        console.log("详情页成功", res)
+        this.setData({
+          topicsdata: res.data,
+          leavevmsg: res.data.leavevmsg,
+        })
+      })
+      .catch(res => {
+        console.log("请求失败", res)
+      })
+}  
 })
+

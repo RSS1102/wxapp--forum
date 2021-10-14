@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/topics/topics",
+          "pathName": "pages/topics/topics",
+          "query": "id=18ed09686167fdd40004dc433ce0797a",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

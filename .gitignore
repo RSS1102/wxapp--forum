@@ -1,0 +1,12 @@
+# Default ignored files
+/node_modules/
+/miniprogram_npm/
+
+
+#cloudfunction
+/cloudfunction/adduser/node_modules/
+/cloudfunction/getPageList_cloud/node_modules/
+/cloudfunction/MsgCheckText/node_modules/
+/cloudfunction/quickstartFunctions/node_modules/
+/cloudfunction/updatamsg/node_modules/
+

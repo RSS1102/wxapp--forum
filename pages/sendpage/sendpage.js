@@ -366,6 +366,7 @@ Page({
       })
     db1.add({
         data: {
+          matchNum:0,
           title: setitle,
           page: sepage,
           king: kings,
@@ -438,8 +439,9 @@ Page({
       .catch(res => {
         console.log("user内容获取失败", res)
       })
-    db2.add({
+    db1.add({
         data: {
+          matchNum:1,
           title: setitle,
           page: sepage,
           king: kings,

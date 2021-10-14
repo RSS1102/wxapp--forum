@@ -15,8 +15,6 @@ let gender=""//性别
 
 Page({
   data: {
-
-
     // 输入未符合内容，提示框
     showOneButtonDialog: false,
     oneButton: [{
@@ -185,6 +183,7 @@ Page({
             change: res.data
           })
           console.log(res.data)
+          that.changeParentData(ID);
         }
       }) 
        //60倒计时方法，可以发布
@@ -192,7 +191,14 @@ Page({
     }).catch(res => {
       console.log("1失败", res)
     })
-
-  }
+  },
+  changeParentData: function (ops) {
+   let opt=ops
+    var pages =getCurrentPages();//当前页面栈
+    if (pages.length >1) {
+        var beforePage = pages[pages.length- 2];//获取上一个页面实例对象
+        beforePage.changeData(opt);//触发父页面中的方法
+    }
+}
 
 })

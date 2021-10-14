@@ -1,14 +1,17 @@
 {
-  "name": "adduser",
+  "name": "cok",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "~2.4.0"
+    "@miniprogram-component-plus/tabs": "^1.0.0",
+    "@vant/weapp": "^1.8.2",
+    "weui-miniprogram": "^1.1.0",
+    "wx-server-sdk": "^2.5.3"
   }
 }
