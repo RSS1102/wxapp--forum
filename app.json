@@ -1,7 +1,7 @@
 {
   "cloud": true,
   "pages": [
-   
+   "pages/msgpages/DatetimePicker/DatetimePicker",
     "pages/index/index",
     "pages/usermsg/usermsg",
     "pages/sendpage/sendpage",

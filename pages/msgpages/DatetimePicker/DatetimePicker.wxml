@@ -1,0 +1,27 @@
+<!--pages/msgpages/DatetimePicker/DatetimePicker.wxml-->
+<van-cell title="预约时间" is-link bind:click="showPopup"  title-width="80">
+  {{showTimes}}
+</van-cell>
+
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 45%;"
+  bind:close="onClose"
+>
+<van-datetime-picker
+  type="datetime"
+  value="{{ currentDate }}"
+  min-date="{{ minDate }}"
+  max-date="{{ maxDate }}"
+  bind:input="onInput"
+  bind:confirm="onConfirm"
+  bind:cancel="onCancel"
+  title="选择预约的时间，"
+/>
+
+</van-popup>
+
+
+
+
