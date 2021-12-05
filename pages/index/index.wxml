@@ -33,7 +33,7 @@
         <image class="image" src='/images/sex/woman.png' class="sex">
         </image>
       </block>
-      <view class="index-userinfo">
+      <view class="userinfo">
         <!--姓名-->
         <view class="nickname">
           {{item.nickName}}
@@ -74,9 +74,9 @@
       <text >{{item.zannum}}</text>
     </view>
     <!-- 留言按钮 -->
-    <view  class="btn-coin" bindtap="gotopics" data-item="{{item}}">
+    <view  class="btn-coin" bindtap="goLeavemsg" data-item="{{item}}" data-bindex= '{{bindex}}'>
       <image class="btn-image" src="/images/icon/reply.png"></image>
-      <text>{{item.replynum}}</text>
+      <text>{{item.leavevmsg.length?item.leavevmsg.length:0}}</text>
     </view>
     <!-- 分享按钮 -->
     <view class="btn-share">

@@ -46,20 +46,7 @@
   font-size: 14px;
 }
 
-/* 搜索按钮 */
-.btnstyle {
-  font-weight: bold;
-  margin-left: 8px;
-  width: 55px;
-  height: 37px;
-  border-radius: 10%;
-  background-color: rgb(212, 216, 213);
-  /* 文字水平垂直居中 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+ 
 .image {
   height: 80rpx;
   width: 80rpx;
@@ -71,19 +58,20 @@
 .sex {
   height: 40rpx;
   width: 40rpx;
-  margin-top: 35rpx;
-  margin-left: 10rpx;
+  margin:30rpx 20rpx ;
+  
 
 }
 
 /* --设置边框 ，设置姓名,kingdom在同一行--*/
-.index-userinfo {
+.userinfo {
   border-radius: 6rpx;
   background-color: #f3e9f8;
   display: flex;
   margin-top: 20rpx;
   margin-left: 15rpx;
   border: 3px solid #d6bde2;
+  height:50rpx;
 }
 
 .king {
@@ -92,36 +80,33 @@
 
 /* --标题--*/
 .title-item {
-  margin: 5px 0 5px 0;
   display: flex;
+  margin: 10rpx;
+  font-weight: bold;
 }
 
 .title-col {
-  font-weight: bold;
   font-size: 45rpx;
 }
 
 .title-text {
-  font-size: 40rpx;
+  font-size: 35rpx;
 }
 
 /* --内容--*/
 .page-item {
   height: 70rpx;
   font-size: 45rpx;
-  margin-bottom: 10px;
+  margin: 10rpx;
   display: flex;
 }
 
 .page-col {
-  font-size: 40rpx;
   font-weight: bold;
 
 }
 
 .page-text {
-  margin-left: 1rpx;
-  margin-top: 2rpx;
   font-size: 40rpx;
   max-width: 200px;
   /* 指定宽度.*/
@@ -168,6 +153,7 @@
   border: 2px solid rgb(142, 225, 228);
   border-style: ridge none none none;
   height: 40px;
+  
 }
 
 /* 按钮 */
@@ -175,6 +161,7 @@
   display: flex;
   width: 33%;
   height: 40px;
+  margin-left: 20rpx;
 }
 
 

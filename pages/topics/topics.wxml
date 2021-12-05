@@ -46,7 +46,7 @@
     <!-- 留言按钮 -->
     <view class="btn-coin" bindtap="btnleavems" data-item="{{item}}">
       <image class="btn-image" src="/images/icon/reply.png"></image>
-      <text>{{topicsdata.replynum}}</text>
+      <text>{{topicsdata.leavevmsg.length?topicsdata.leavevmsg.length:0}}</text>
     </view>
     <!-- 分享按钮 -->
     <view class="btn-share">

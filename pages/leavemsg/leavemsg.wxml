@@ -19,7 +19,7 @@
 <!--等待一分钟后再次发布-->
 <!--禁止-->
 <view wx:if="{{change}}"   wx:key="key1" class="sendbtn">
-  <button  disabled="true" type="primary" bindtap="sendmsg">请等待一分钟后再次留言</button>
+  <button  disabled="true" type="primary" bindtap="sendmsg">请等待10s后再次留言</button>
 </view>
 <!--允许-->
 <block wx:else >

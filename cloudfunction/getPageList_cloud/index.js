@@ -13,7 +13,8 @@ const sendMessage_t = db.collection('sendmessage');
 // 云函数入口函数
 exports.main = async (event, context) => {
   const openid = cloud.getWXContext().OPENID;
-  let len = event.len;
+  let len = 5
+  // event.len;
   let MatchNum=event.matchNum;
 
   return await sendMessage_t.aggregate()

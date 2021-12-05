@@ -1,6 +1,6 @@
 // pages/index/index.js
 let totaNum = 0 //需要有多少个数据需要加载
-let   matchNum=0;//需要加载第几项的数据
+let matchNum = 0;//需要加载第几项的数据
 const $ = wx.cloud.database().command;
 const DBzan = wx.cloud.database().collection('pagezan');
 const DBUser = wx.cloud.database().collection("user");
@@ -11,7 +11,7 @@ let len
 let len1
 let activeTab
 let pagezan = ""
-
+let leaveBindex
 Page({
 
   /**
@@ -38,7 +38,7 @@ Page({
   onLoad: function (options) {
     //00
     db1.where({
-      matchNum:0,
+      matchNum: 0,
     }).count()
       .then(res => {
         console.log('db1总共有 0:', res.total)
@@ -51,7 +51,7 @@ Page({
         } else {
           //执行方法,获取第0项。
           console.log("执行方法,获取第0项。")
-          matchNum=0;
+          matchNum = 0;
           this.getdatalist();
         }
       })
@@ -61,13 +61,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.pagelist = []
+    this.onLoad()
+  },
+  /**
+ * 页面上拉触底事件的处理函数
+ */
+  onReachBottom: function () {
     this.getdatalist();
-    console.log('下拉刷新');
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    setTimeout(function () {
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    }, 500);
+    //判断第几项
   },
 
 
@@ -76,37 +78,37 @@ Page({
     //获取pagelist数组的长度
     len = this.data.pagelist.length
     console.log('len总共有数据：', len)
-    //所有数据加载完成
-    if (totaNum == len) {
-      wx.showToast({
-        title: '数据已经加载完毕!',
-      })
-      console.log('数据已经加载完毕')
-      return
-    }
+    // //所有数据加载完成
+    // if (totaNum == len) {
+    //   wx.showToast({
+    //     title: '数据已经加载完毕!',
+    //   })
+    //   console.log('数据已经加载完毕')
+    //   return
+    // }
     wx.showLoading({
       title: '加载中...',
     })
     wx.cloud.callFunction({
-        name: 'getPageList_cloud',
-        data: {
-          len: len,
-          matchNum: matchNum,
-        }
-      }).then(res => {
-        console.log("==============");
-        console.log('获取云函数成功', res);
-        console.log('获取云函数第一条成功', res.result.list[0]);
-        //赋值数组，动态绑定
-        this.setData({
-          //拼接数组
-          pagelist: this.data.pagelist.concat(res.result.list)
-        })
-        wx.hideLoading(),
-          wx.showToast({
-            title: '加载成功！',
-          })
+      name: 'getPageList_cloud',
+      data: {
+        len: len,
+        matchNum: matchNum,
+      }
+    }).then(res => {
+      console.log("==============");
+      console.log('获取云函数成功', res);
+      console.log('获取云函数第一条成功', res.result.list[0]);
+      //赋值数组，动态绑定
+      this.setData({
+        //拼接数组
+        pagelist: this.data.pagelist.concat(res.result.list)
       })
+      wx.hideLoading(),
+        wx.showToast({
+          title: '加载成功！',
+        })
+    })
       .catch(res => {
         wx.hideLoading(),
           wx.showToast({
@@ -114,91 +116,26 @@ Page({
           })
       })
   },
-  // //1
-  // getdatalist1() {
-  //   //获取pagelist数组的长度
-  //   len = this.data.pagelist.length
-  //   //所有数据加载完成
-  //   if (totaNum1 == len) {
-  //     wx.showToast({
-  //       title: '数据已经加载完毕!',
-  //     })
-  //     console.log('数据已经加载完毕')
-  //     return
-  //   }
-  //   console.log('len总共有数据：', len)
-  //   wx.showLoading({
-  //     title: '加载中...',
-  //   })
-  //   wx.cloud.callFunction({
-  //       name: 'getPageList_one',
-  //       data: {
-  //         len: len
-  //       }
-  //     }).then(res => {
-  //       console.log("==============");
-  //       console.log('获取云函数成功', res);
-  //       console.log('获取云函数第一条成功', res.result.list[0]);
-  //       //赋值数组，动态绑定
-  //       this.setData({
-  //         //拼接数组
-  //         pagelist: this.data.pagelist.concat(res.result.list)
-  //       })
-  //       wx.hideLoading(),
-  //         wx.showToast({
-  //           title: '加载成功！',
-  //         })
-  //     })
-  //     .catch(res => {
-  //       wx.hideLoading(),
-  //         wx.showToast({
-  //           title: '加载失败！',
-  //         })
-  //     })
-  // },
 
   //前往详情页：topics
   gotopics(event) {
-    console.log("EVE",  event.currentTarget.dataset.item._id)
+    console.log("EVE", event.currentTarget.dataset.item._id)
     wx.navigateTo({
       url: '/pages/topics/topics?id=' + event.currentTarget.dataset.item._id,
     })
   },
+  //前往留言
+  goLeavemsg: function (event) {
+    console.log("留言", event)
+    leaveBindex = event.currentTarget.dataset.bindex
+    wx.navigateTo({
+      url: '/pages/leavemsg/leavemsg?id=' + event.currentTarget.dataset.item._id,
+    })
+  },
 
   // 搜索
-  // slemsg() {
-  //   len = this.data.pagelist.length
-  //   console.log(len)
-  //   this.setData({
-  //     pagelist: []
-  //   })
-  //   const db = wx.cloud.database()
-  //   db.collection('sendmessage')
-  //     .where({
-  //       king: db.RegExp({
-  //         regexp: '3',
-  //         options: 'i',
-  //       }),
-  //     }).orderBy('time', 'desc')
-  //     .skip(len)
-  //     .get()
-  //     .then(res => {
-  //       console.log(res)
-  //       this.setData({
-  //         //拼接数组
-  //         pagelist: this.data.pagelist.concat(res.data)
-  //       })
-  //     })
-  // },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.getdatalist();
-    //判断第几项
 
-  },
   //tabs选项卡
   onTabCLick(e) {
     activeTab = e.detail.index
@@ -210,15 +147,15 @@ Page({
     })
     //0,热度推荐
     if (activeTab == 0) {
-      matchNum=0;
+      matchNum = 0;
       db1.where({
-        matchNum:matchNum,
+        matchNum: matchNum,
       }).count()
         .then(res => {
           console.log('db1总共有', res.total)
           totaNum = res.total
           //判断文章数量是否为'0',如果为'0'，提示还有文章，否则加载数据。
-          if (totaNum  <= 0) {
+          if (totaNum <= 0) {
             this.setData({
               pageNull: true
             })
@@ -232,15 +169,15 @@ Page({
 
     //1技术攻略
     if (activeTab == 1) {
-      matchNum=1
+      matchNum = 1
       db1.where({
         matchNum: matchNum,
       }).count()
         .then(res => {
           console.log('db2总共有', res.total)
-          totaNum= res.total
+          totaNum = res.total
           //判断文章数量是否为'0',如果为'0'，提示还有文章，否则加载数据。
-          if (totaNum  <= 0) {
+          if (totaNum <= 0) {
             this.setData({
               pageNull: true
             })
@@ -302,9 +239,9 @@ Page({
     })
     //查询文章的点赞情况
     await DBzan.where({
-        page_id: page_id,
-        _openid: openid
-      }).get()
+      page_id: page_id,
+      _openid: openid
+    }).get()
       .then(res => {
         console.log("查询数组", res)
         zanboolean = res.data[0].zanboolean //已经点赞的情况下
@@ -350,11 +287,11 @@ Page({
       //第一次点赞，Zan列表添加点赞人员
       console.log('第一次点赞');
       DBzan.add({
-          data: {
-            page_id: page_id,
-            zanboolean: true
-          }
-        })
+        data: {
+          page_id: page_id,
+          zanboolean: true
+        }
+      })
         .then(console.log)
         .catch(console.log)
       //用户第一次点赞  点赞后 数量应该直接 +1
@@ -372,4 +309,12 @@ Page({
       [`pagelist[${index}].zannum`]: zannum,
     })
   },
+
+  changeData: function (ops, leaveSus) {
+    console.log("leaveBindex", leaveBindex, ops, leaveSus)
+    if (leaveSus)
+      this.setData({
+        [`pagelist[${leaveBindex}].leavevmsg.length`]: this.data.pagelist[leaveBindex].leavevmsg.length + 1,
+      })
+  }
 })

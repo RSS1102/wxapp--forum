@@ -5,6 +5,9 @@ page {  background-color: #ebe8e8;
   line-height: 1.6;
 
 }
+button{
+  width: 250px;
+}
 .pagetitle{
   text-align: center;
   font-size: 23px;
