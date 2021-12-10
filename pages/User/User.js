@@ -30,61 +30,16 @@ Page({
   },
   //页面监听，
   onLoad() {
-    var that = this
-    // 更新用户信息的本地储存
-    wx.getStorage({
-      key: "Userupdate",
-      success(res) {
-        console.log('是否禁止更新用户信息', res.data)
-        that.setData({
-          Userupdate: res.data
-        })
-      }
-    })
-    
-    wx.cloud.callFunction({
-      name: "adduser",
-      success(res) {
-        // 授权用户的openid
-        openId = res.result.openid
-        // 判断openid是否存在于数据库
-        console.log(res)
-        DBUser.where({
-          _openid: openId
-        }).get().then(res => {
-          console.log("RES", res)
-          // 判断返回的data长度是否为0，如果为0的话就证明数据库中没有存在该数据，然后进行添加操作
-          if (res.data.length == 0) {
-            //通过判断data数组长度是否为0来进行下一步的逻辑处理
-            that.setData({
-              canIUseGetUserProfile: true,
-            })
-          } else {
-            console.log("你已经添加了此用户")
-            that.setData({
-              canIUseGetUserProfile: false,
-              userInfo: res.data[0],
-            })
-          }
-        })
-      },
-      fail(res) {
-        console.log("云函数adduser调用失败")
-      }
-    })
-    //openid
-    wx.cloud.callFunction({
-      name: "adduser",
-      success(res) {
-        // 授权用户的openid
-        openId = res.result.openid
-        // 判断openid是否存在于数据库
-        console.log(res)
-      },
-      fail(res) {
-        console.log(res, "云函数adduser调用失败")
-      }
-    })
+    let userinfo = wx.getStorageSync('userinfo')
+    console.log(userinfo)
+    console.log(Object.keys(userinfo))
+    if (!Object.keys(userinfo) == []) {
+      this.setData({
+        hasUserInfo: true,
+        userInfo: userinfo
+      })
+    }
+
 
 
   },
@@ -111,6 +66,9 @@ Page({
       success(res) {
         // 授权用户的openid
         openId = res.result.openid
+        let obj = Object.assign({ openid: openId }, userInfo)
+        console.log("obj", obj)
+        wx.setStorageSync('userinfo', obj)
         // 判断openid是否存在于数据库
         console.log(res)
         DBUser.where({
@@ -143,21 +101,21 @@ Page({
   async updateuser() {
     var that = this
     await wx.getUserProfile({
-        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      }).then(res => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-        })
-        userInfo = res.userInfo
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    }).then(res => {
+      console.log(res)
+      this.setData({
+        userInfo: res.userInfo,
       })
+      userInfo = res.userInfo
+    })
       .catch(res => {
         console.log(res)
       })
 
     await DBUser.where({
-        _openid: openId
-      })
+      _openid: openId
+    })
       .get()
       .then(res => {
         console.log("res", res)
@@ -179,8 +137,8 @@ Page({
         console.log("成功", res)
         //显示明天更新
         this.setData({
-            Userupdate: true,
-          }),
+          Userupdate: true,
+        }),
           // 提示用户信息已经更改 
           wx.showToast({
             title: '用户信息已更新成功',
@@ -194,15 +152,7 @@ Page({
         })
 
         // 更新用户信息的本地储存
-        wx.getStorage({
-          key: "Userupdate",
-          success(res) {
-            console.log('是否禁止更新用户信息', res.data)
-            that.setData({
-              Userupdate: res.data
-            })
-          }
-        })
+
 
         that.upUsersettime();
       },
@@ -252,4 +202,13 @@ Page({
       url: '/pages/user_page_index/queston/queston'
     })
   },
+  unLogin(){
+    wx.removeStorageSync('userinfo')
+    this.setData({
+      hasUserInfo:false
+    })
+    wx.showToast({
+      title: '退出登陆',
+    })
+  }
 })

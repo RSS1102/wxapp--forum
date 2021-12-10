@@ -6,7 +6,7 @@
 <view class="page me">
   <view class="userinfo">
     <!-- 未登录状态 -->
-    <view wx:if="{{!hasUserInfo && canIUseGetUserProfile }}">
+    <view wx:if="{{!hasUserInfo}}">
       <button type="primary" class="btninfo" bindtap="getUserProfile"> 获取头像昵称 </button>
       <view class="usertext">
         <!-- 还未登录的提示 -->
@@ -35,11 +35,12 @@
     <!-- 隐私说明 -->
     <van-cell title="隐私说明" is-link bindtap="goprvacy" />
     <!-- 程序说明-->
-    <van-cell title="程序说明"  is-link  bindtap="goqueston" />
+    <van-cell title="程序说明" is-link bindtap="goqueston" />
     <!--用户反馈-->
-    <button open-type="feedback" class="feedbackbtn" >
+    <button open-type="feedback" class="feedbackbtn">
       <text> 用户意见反馈 </text>
     </button>
-  <!--版本说明  -->
+    <!--退出登陆  -->
+    <van-cell title="退出登陆" is-link bindtap="unLogin" custom-class="btnstyle" />
   </view>
 </view>

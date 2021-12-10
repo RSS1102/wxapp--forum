@@ -36,6 +36,7 @@ Page({
    */
   //页面初始化
   onLoad: function (options) {
+
     //00
     db1.where({
       matchNum: 0,

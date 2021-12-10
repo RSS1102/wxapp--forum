@@ -23,6 +23,12 @@
                     "pathName": "pages/leavemsg/leavemsg",
                     "query": "id=fa24ce1a6168267b000e134119c7a52d",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/User/User",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }
