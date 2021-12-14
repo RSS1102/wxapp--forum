@@ -1,0 +1,11 @@
+<view class="food-list">
+<view class="food-sharetit">
+  <text>标题：</text>
+  {{foodList.shareTit}}
+</view>
+<view class="food-sharepage">
+  <text>分享故事：</text>
+  {{foodList.shaerPage}}
+</view>
+<image class="food-fileimg" src="{{foodList.fileImg}}"></image>
+</view>

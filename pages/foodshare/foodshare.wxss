@@ -1,0 +1,9 @@
+/* pages/foodshare/foodshare.wxss */
+.van-uploader {
+  margin-top: 80rpx;
+}
+.van-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 80rpx;
+}

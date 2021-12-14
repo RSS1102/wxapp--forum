@@ -1,0 +1,11 @@
+<view wx:for="{{foodList}}" wx:key="_id" bindtap="goTopics" class="food-list" data-item="{{item}}" wx:for-index="bindex" data-bindex='{{bindex}}'>
+  <view class="food-sharetit">
+    <text>标题：</text>
+    {{item.shareTit}}
+  </view>
+  <view class="food-sharepage">
+    <text>分享故事：</text>
+    {{item.shaerPage}}
+  </view>
+  <image class="food-fileimg" src="{{item.fileImg}}"></image>
+</view>

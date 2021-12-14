@@ -1,0 +1,26 @@
+/* pages/user/user.wxss */
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* info */
+.user-imageItem {
+  display: flex;
+  justify-content: center;
+}
+
+.user-image {
+  margin-top: 100rpx;
+  border-radius: 48%;
+  width: 180rpx;
+  height: 180rpx;
+  border: 2px solid rgba(186, 58, 236, 0.4);
+}
+.user-name {
+  margin: 40rpx;
+  display: flex;
+  justify-content: center;
+}

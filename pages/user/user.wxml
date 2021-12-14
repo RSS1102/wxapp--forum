@@ -1,0 +1,15 @@
+<!--pages/user/user.wxml-->
+<van-dialog id="van-dialog" />
+<view wx:if="{{!login}}" class="login">
+    <van-button  type="primary" bindtap="onLogin" type="primary">登陆 </van-button>
+</view>
+<view wx:else>
+    <view class="user-imageItem">
+        <image class=" user-image " src="{{userinfo.avatarUrl}}" />
+    </view>
+    <view class="user-name">{{userinfo.nickName}}</view>
+    <van-cell-group>
+        <van-cell title="我发布的" is-link inset bindtap="myShare" />
+
+    </van-cell-group>
+</view>
