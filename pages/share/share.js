@@ -17,7 +17,11 @@ Page({
   onLoad: function (options) {
 
   },
-  // van提供能力，将选中图片push到数组内，然后渲染图片数组
+  /**
+   * 
+   * 1.添加图片：van提供能力，将选中图片push到数组内，然后渲染图片数组
+   * --- 通过切换 2.添加视频：发布一个视频
+   *  */ 
   afterRead(event) {
     const {
       file
@@ -31,11 +35,22 @@ Page({
       fileList: this.data.fileList
     });
   },
-  // 清空图片
+  // 删除图片
   deleteImg(event) {
+    console.log(event)
+    var nowList = []; //新数据
+    var fileList = this.data.fileList; //原数据
+    for (let i = 0; i < fileList.length; i++) {
+      if (i == event.detail.index) {
+        continue;
+      } else {
+        nowList.push(fileList[i])
+      }
+    }
     this.setData({
-      fileList: []
+      fileList: nowList,
     })
+    console.log('fileList',this.data.fileList)
   },
 
   /*
@@ -43,19 +58,22 @@ Page({
   2.添加二次确定按钮，防止用户操作失误发布
    */
   shareDialog() {
-    // 当三个内容有未填写的，应拒绝发布，并提示
-    if (!Boolean(this.data.shaerPage) || !Boolean(this.data.shareTit) || !this.data.fileList.length) {
+    // 当文字内容有未填写的，应拒绝发布，并提示
+    //废弃图片限制|| !this.data.fileList.length
+    if (!Boolean(this.data.shaerPage) || !Boolean(this.data.shareTit) ) {
       wx.showToast({
-        title: '不能为空',
+        title: '内容不能为空',
         icon: 'error',
       })
       return
     }
     //二次确认
+    let msg =''
+    this.data.fileList.length? msg='你要和大家一起分享属于你的故事吗？': msg='你要和大家一起分享属于你的故事吗？ \n (添加图片更生动哦)'
     Dialog.confirm({
-        title: 'Share',
-        message: '你要和大家分享你的美食吗？',
-      })
+      title: '分享',
+      message: msg,
+    })
       .then(() => {
         // on confirm
         this.shareFood()

@@ -86,7 +86,7 @@ Page({
     let str = JSON.stringify(event);
     console.log(str)
     wx.navigateTo({
-      url: '/pages/usershare/usershare?str=' + str,
+      url: '/pages/useritems/usershare/usershare?str=' + str,
     })
   },
   // 退出登陆

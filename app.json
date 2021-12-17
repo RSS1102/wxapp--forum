@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/foodshare/foodshare",
+    "pages/share/share",
     "pages/user/user",
-    "pages/topics/topics",
-    "pages/usershare/usershare"
+    "pages/indexitems/topics/topics",
+    "pages/useritems/usershare/usershare"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,8 +25,8 @@
         "selectedIconPath": "img/tabbar/on_home.png"
       },
       {
-        "pagePath": "pages/foodshare/foodshare",
-        "text": "食物分享",
+        "pagePath": "pages/share/share",
+        "text": "分享",
         "iconPath": "img/tabbar/un_share.png",
         "selectedIconPath": "img/tabbar/on_share.png"
       },

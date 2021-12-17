@@ -1,0 +1,20 @@
+/* pages/foodshare/foodshare.wxss */
+page {
+    background: rgba(175, 174, 174, 0.2);
+}
+
+.share-title {
+    margin: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.van-uploader {
+    margin-top: 80rpx;
+}
+
+.van-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 80rpx;
+}

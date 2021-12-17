@@ -1,8 +1,0 @@
-<van-dialog id="van-dialog" />
-<!-- 双向绑定 -->
-<text>标题：</text>
-<van-field class="van-field" model:value="{{shareTit}}" placeholder="标题" border="true" />
-<text>内容：</text>
-<van-field class="van-field" model:value="{{shaerPage}}" placeholder="内容" border="true" />
-<van-uploader class="van-uploader" file-list="{{ fileList }}" bind:delete="deleteImg" max-count="1" bind:after-read="afterRead" />
-<van-button class="van-button" type='primary' bindtap="shareDialog">分享美食</van-button>

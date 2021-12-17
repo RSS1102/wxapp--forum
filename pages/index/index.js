@@ -47,7 +47,7 @@ Page({
     let str = JSON.stringify(pages);
     console.log(str)
     wx.navigateTo({
-      url: '/pages/topics/topics?str=' + str,
+      url: '/pages/indexitems/topics/topics?str=' + str,
     })
   }
 
