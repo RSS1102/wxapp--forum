@@ -1,7 +1,11 @@
 <!--pages/user/user.wxml-->
 <van-dialog id="van-dialog" />
 <view wx:if="{{!login}}" class="login">
-    <van-button  type="primary" bindtap="onLogin" type="primary">登陆 </van-button>
+    <view class="login-card">
+        <view>欢迎来到这里！</view>
+        <view>请授权登陆之后享受服务</view>
+    </view>
+    <van-button custom-class='login-btn' bindtap="onLogin" type="primary">登陆 </van-button>
 </view>
 <view wx:else>
     <view class="user-imageItem">
@@ -10,6 +14,7 @@
     <view class="user-name">{{userinfo.nickName}}</view>
     <van-cell-group>
         <van-cell title="我发布的" is-link inset bindtap="myShare" />
+        <van-cell title="退出登陆" is-link inset bindtap="backLogin" />
 
     </van-cell-group>
 </view>

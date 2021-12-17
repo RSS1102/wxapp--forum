@@ -6,6 +6,15 @@
   transform: translate(-50%, -50%);
 }
 
+.login-btn{
+  width: 170px;
+}
+.login-card{
+  margin-bottom: 50px;
+  text-align: center;
+  color:rgb(106, 184, 42);
+  font-weight: bold;
+}
 /* info */
 .user-imageItem {
   display: flex;

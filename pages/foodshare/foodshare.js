@@ -38,7 +38,10 @@ Page({
     })
   },
 
-  /* 添加二次确定按钮，防止用户操作失误发布 */
+  /*
+  1.用户未登陆不能分享
+  2.添加二次确定按钮，防止用户操作失误发布
+   */
   shareDialog() {
     // 当三个内容有未填写的，应拒绝发布，并提示
     if (!Boolean(this.data.shaerPage) || !Boolean(this.data.shareTit) || !this.data.fileList.length) {
