@@ -62,6 +62,20 @@ Page({
           }).then(() => {
             console.log('成功')
           }).catch(console.error)
+        } else {
+          // 更新用户信息
+          db_users.where({
+            _openid: openid
+          })
+            .update({
+              data: {
+                nickName: this.data.userinfo.nickName,
+                avatarUrl: this.data.userinfo.avatarUrl
+              }
+            }).then(() => {
+              console.log('更新成功')
+            }).catch(console.error)
+
         }
       })
 
@@ -90,7 +104,7 @@ Page({
     })
   },
   // 退出登陆
-  backLogin(){
+  backLogin() {
     Dialog.confirm({
       title: '退出登陆',
       message: '您是否确定退出登陆，如果退出则不能享受服务！',
@@ -99,12 +113,12 @@ Page({
         // on confirm
         wx.removeStorageSync('userinfo')
         this.setData({
-          login:false
+          login: false
         })
       })
       .catch(() => {
         // on cancel
       });
-  
+
   }
 })

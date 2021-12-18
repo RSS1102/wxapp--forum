@@ -1,5 +1,5 @@
 // pages/mainPage/index/index.js
-const db_share = wx.cloud.database().collection('foodshare')
+const db_share = wx.cloud.database().collection('myshare')
 Page({
 
   /**
