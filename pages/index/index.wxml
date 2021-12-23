@@ -1,13 +1,18 @@
-
-  <!-- 用户发布内容展示 -->
-  <view wx:for="{{foodList}}" wx:key="_id" bindtap="goTopics" class="food-list" data-item="{{item}}" wx:for-index="bindex" data-bindex='{{bindex}}'>
-    <view class="food-sharetit">
-      <text>标题：</text>
-      {{item.shareTit}}
-    </view>
-    <view class="food-sharepage">
-      <text>分享故事：</text>
-      {{item.shaerPage}}
-    </view>
-    <image class="food-fileimg" src="{{item.fileImg}}"></image>
+<!-- 用户发布内容展示 -->
+<view wx:for="{{ListTemp}}" wx:key="_id" class="food-list" data-item="{{item}}" data-bindex='{{bindex}}'>
+  <view class="sharetit">
+    <image src="{{userInfo_Img}}"></image>
+    <view>{{userInfo_Name}}</view>
+    <view> {{item.shareTit}}</view>
   </view>
+  <!-- 跳转详情页 -->
+  <view class="sharepage" bindtap="goTopics" wx:for-index="bindex">
+    <text space="nbsp" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.shaerPage}}</text>
+  </view>
+  <video wx:if="{{item.fileType=='mp4'}}" src="{{item.fileTemp}}" class="fileTemp-mp4"> </video>
+  <!-- 嵌套循环 -->
+  <view wx:else class="fileTemp-img">
+    <image wx:for="{{item.fileTemp}}" wx:key="item" src="{{item}}" class="fileTemp-img-item"></image>
+  </view>
+
+</view>

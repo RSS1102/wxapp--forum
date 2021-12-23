@@ -2,42 +2,54 @@ view {
   box-sizing: border-box;
 }
 
-.page-swiper {
-  width: 100%;
-  height: auto;
-  background-color: red;
-
-}
-
-.swiper-image {
-  width: 100%;
-  height: 100%;
-}
 /* 循环列表 */
 .food-list {
   border: 1px solid black;
-  margin: 30px 0;
-  border-radius: 4%;
+  margin: 50rpx 0;
+  border-radius: 8rpx;
 }
 
 text {
   font-weight: bold;
 }
 
-.food-sharetit {
+.sharetit {
   display: flex;
   justify-content: center;
-  margin: 10px 0;
-  font-size: 18px;
+  margin: 20rpx 0;
+  font-size: 32rpx;
   font-weight: bold;
 }
 
-.food-sharepage {
-  /* 文字自动换行 */
-  word-wrap: break-word;
-  word-break: break-all;
-  white-space: pre-line;
+.sharepage {
+  
+  /* 文字单行 且超出省略 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* 盒子 */
   border-style: solid none solid none;
-  border-width: 1px;
-  padding: 10px 0;
+  border-width: 2rpx;
+  padding: 20rpx 0;
+}
+
+/* 视频 */
+.fileTemp-mp4 {
+  width: 95vw;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 10rpx 0;
+}
+
+/* 图片 */
+.fileTemp-img {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fileTemp-img-item {
+  width: 31vw;
+  height: 350rpx;
+  margin: 10rpx;
 }

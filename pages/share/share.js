@@ -1,6 +1,7 @@
 // pages/foodshare/foodshare.js
 const db_share = wx.cloud.database().collection('myshare')
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 Page({
   /**
    * 页面的初始数据
@@ -10,31 +11,42 @@ Page({
     shareTit: '',
     shaerPage: '',
     maxCount: 3, //上传文件数量
-    accept: 'media',//上传文件格式
-    cloudTemps: []//云储存地址
+    accept: 'media', //上传文件格式
+    cloudTemps: [] //云储存地址
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
   /**
    * 
    * 1.添加图片：van提供能力，将选中图片push到数组内，然后渲染图片数组
    * --- 通过切换 2.添加视频：发布一个视频
    *  */
   afterRead(event) {
-    const { file } = event.detail;
+    const {
+      file
+    } = event.detail;
     console.log(file)
-    let cloudPath = ''
-    let ImgPath = "Photo/" + Date.now() + ".jpg"; //图片云储存
-    let VideoPath = "Video/" + Date.now() + ".mp4"; //视频云储存
-    file.type === 'video' ? cloudPath = VideoPath : cloudPath = ImgPath
+
+    /* 
+     *上传图片
+     *上传文件到 云储存 
+     *通过截取上传文件的路径后缀名-判断类型
+     */
+    let urlType = this.urlType = file.url.substr(file.url.lastIndexOf(".") + 1)
+    let cloudPath = urlType + '/' + Date.now() + "." + urlType //分类储存
+    console.log("cloudPath", cloudPath)
+    // let ImgPath=''
+    // let Img_gif = "Photo/" + Date.now() + ".gif"; //gif片云储存
+    // let Img_jpg = "Photo/" + Date.now() + ".jpg"; //jpg图片云储存
+    // let VideoPath = "Video/" + Date.now() + ".mp4"; //视频云储存
+    // let cloudPath = ''
+    // file.type === 'video' ? cloudPath = VideoPath : cloudPath = ImgPath
     wx.cloud.uploadFile({
       cloudPath, //云储存地址
-      filePath: file.url,//本地图片地址
+      filePath: file.url, //本地图片地址
     }).then((res) => {
       console.log(res.fileID)
       this.data.cloudTemps.push(res.fileID)
@@ -56,7 +68,7 @@ Page({
       ...file,
       url: file.url
     });
-    console.log(this.data.fileList)
+    console.log("数据库fileList",this.data.fileList)
     this.setData({
       fileList: this.data.fileList
     });
@@ -83,9 +95,9 @@ Page({
     this.setData({
       fileList: fileList,
     })
-    console.log('fileList', this.data.fileList)
+    console.log('fileListlength', this.data.fileList.length)
     // 如果没有选择 默认上传模式回归 'media'
-    if (fileList === 0) {
+    if (fileList.length === 0) {
       this.setData({
         maxCount: 3,
         accept: 'media'
@@ -111,12 +123,12 @@ Page({
     let msg = ''
     this.data.fileList.length ? msg = '你要和大家一起分享属于你的故事吗？' : msg = '你要和大家一起分享属于你的故事吗？ \n (添加图片或视频会更生动哦)'
     Dialog.confirm({
-      title: '分享',
-      message: msg,
-    }).then(() => {
-      // on confirm
-      this.addDatabase()
-    })
+        title: '分享',
+        message: msg,
+      }).then(() => {
+        // on confirm
+        this.addDatabase()
+      })
       .catch(() => {
         // on cancel
         wx.showToast({
@@ -128,16 +140,21 @@ Page({
 
 
 
-  // 将图片上传到云储存，并且将其他的内容添加到数据库内
+  // 将所有内容添加到数据库内
   addDatabase() {
+    let tiemNow = new Date()
     let shareTit = this.data.shareTit;
     let shaerPage = this.data.shaerPage;
+    console.log( this.data.cloudTemps)
     db_share.add({
       data: {
         shareTit: shareTit,
         shaerPage: shaerPage,
         // 将云储存的内容地址添加到数据库内
-        fileImg: this.data.cloudTemps
+        fileTemp: this.data.cloudTemps,
+        // 文件类型
+        fileType: this.urlType,
+        tiemNow: tiemNow
       }
     }).then(res => {
       console.log(res)
@@ -147,19 +164,16 @@ Page({
       })
       this.setData({
         shaerPage: '',
-        shareTit:'',
+        shareTit: '',
         fileList: []
       })
       // 初始化数据
-      this.data.cloudTemps = [] //云储存地址
-      this.data.maxCount = 3//上传文件数量
-      this.data.accept = 'media'//上传文件格式
+      this.setData({
+        cloudTemps: [], //云储存地址
+        maxCount: 3, //上传文件数量
+        accept: 'media' //上传文件格式
+      })
     }).catch(console.catch)
 
   }
-
-
-
-
-
 })
