@@ -68,7 +68,7 @@ Page({
       ...file,
       url: file.url
     });
-    console.log("数据库fileList",this.data.fileList)
+    console.log("数据库fileList", this.data.fileList)
     this.setData({
       fileList: this.data.fileList
     });
@@ -142,10 +142,10 @@ Page({
 
   // 将所有内容添加到数据库内
   addDatabase() {
-    let tiemNow = new Date()
+    let time = new Date()
     let shareTit = this.data.shareTit;
     let shaerPage = this.data.shaerPage;
-    console.log( this.data.cloudTemps)
+    console.log(this.data.cloudTemps)
     db_share.add({
       data: {
         shareTit: shareTit,
@@ -154,7 +154,7 @@ Page({
         fileTemp: this.data.cloudTemps,
         // 文件类型
         fileType: this.urlType,
-        tiemNow: tiemNow
+        time: time
       }
     }).then(res => {
       console.log(res)

@@ -1,18 +1,18 @@
 <!-- 用户发布内容展示 -->
-<view wx:for="{{ListTemp}}" wx:key="_id" class="food-list" data-item="{{item}}" data-bindex='{{bindex}}'>
+<view wx:for="{{ListTemp}}" wx:key="_id" class="list" data-item="{{item}}" data-bindex='{{bindex}}'>
   <view class="sharetit">
-    <image src="{{userInfo_Img}}"></image>
-    <view>{{userInfo_Name}}</view>
-    <view> {{item.shareTit}}</view>
+    <image class="sharetit-avatarUrl" src="{{item.userinfo[0].avatarUrl}}"></image>
+    <view class="sharetit-nickName">{{item.userinfo[0].nickName}}</view>
+    <view class="sharetit-time">{{item.time}}</view>
   </view>
   <!-- 跳转详情页 -->
-  <view class="sharepage" bindtap="goTopics" wx:for-index="bindex">
-    <text space="nbsp" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.shaerPage}}</text>
+  <view class="shareTit" bindtap="goTopics" wx:for-index="bindex">
+    <text>{{item.shareTit}}</text>
+
   </view>
   <video wx:if="{{item.fileType=='mp4'}}" src="{{item.fileTemp}}" class="fileTemp-mp4"> </video>
   <!-- 嵌套循环 -->
   <view wx:else class="fileTemp-img">
     <image wx:for="{{item.fileTemp}}" wx:key="item" src="{{item}}" class="fileTemp-img-item"></image>
   </view>
-
 </view>

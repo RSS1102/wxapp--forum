@@ -3,30 +3,59 @@ view {
 }
 
 /* 循环列表 */
-.food-list {
+.list {
   border: 1px solid black;
   margin: 50rpx 0;
   border-radius: 8rpx;
+  box-shadow: 0 0 10rpx 0 rgb(129, 126, 126);
 }
 
-text {
+/* text {
   font-weight: bold;
-}
+} */
 
+/* 头部 */
 .sharetit {
   display: flex;
-  justify-content: center;
-  margin: 20rpx 0;
-  font-size: 32rpx;
-  font-weight: bold;
+  line-height: 120rpx;
 }
 
-.sharepage {
-  
+/* 用户信息 */
+.sharetit-userinfo {
+  border-style: none solid none none;
+  border-width: 1rpx;
+}
+
+.sharetit-avatarUrl {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border: 1rpx solid black;
+  border-radius: 10%;
+}
+
+.sharetit-nickName {
+  font-weight: bold;
+  margin: 0 15rpx 0 15rpx;
+}
+
+/* 文章时间 */
+.sharetit-time {
+  font-size: 25rpx;
+  margin: 0 15rpx 0 15rpx;
+}
+
+/* 文章标题 */
+.shareTit {
+  width: 100%;
+  line-height: 50rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50rpx;
   /* 文字单行 且超出省略 */
-  overflow: hidden;
+  /* overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   /* 盒子 */
   border-style: solid none solid none;
   border-width: 2rpx;

@@ -9,16 +9,8 @@ Page({
     login: false,
   },
   onLoad() {
-    //获取用户openID
-    wx.cloud.callFunction({
-      name: "getopenid"
-    }).then(res => {
-      console.log(res.result.openid)
-      wx.setStorageSync('openid', {
-        openid: res.result.openid
-      })
-    })
-    // 本地渲染
+
+    // 本地渲染用户
     const userinfo = wx.getStorageSync('userinfo')
     let Login = false
     userinfo ? Login = true : Login = false
@@ -39,17 +31,29 @@ Page({
         login: true,
         userinfo: this.data.userinfo
       })
-      wx.setStorageSync('userinfo', this.data.userinfo)
+
     }).catch(console.error)
+    //获取用户openID
+    await wx.cloud.callFunction({
+      name: "getopenid"
+    }).then(res => {
+      console.log(res.result.openid)
+      let userinfo = Object.assign(this.data.userinfo, {
+        openid: res.result.openid
+      })
+      wx.setStorageSync('userinfo', userinfo)
+    })
+
+
     console.log(this.data.userinfo)
     /* 
         // 添加添加用户到数据库
         //应先判断数据库是否包含此用户openid
     */
-    const openid = wx.getStorageSync('openid').openid
+    const openid = wx.getStorageSync('userinfo').openid
     db_users.where({
-      _openid: openid
-    }).count()
+        _openid: openid
+      }).count()
       .then(res => {
         console.log(res)
         if (!res.total) {
@@ -65,8 +69,8 @@ Page({
         } else {
           // 更新用户信息
           db_users.where({
-            _openid: openid
-          })
+              _openid: openid
+            })
             .update({
               data: {
                 nickName: this.data.userinfo.nickName,
@@ -83,11 +87,11 @@ Page({
   },
   // 个人发布的内容
   myShare() {
-    const openid = wx.getStorageSync('openid').openid
+    const openid = wx.getStorageSync('userinfo').openid
     console.log(openid)
     db_share.where({
-      _openid: openid
-    }).get()
+        _openid: openid
+      }).get()
       .then(res => {
         console.log(res)
         this.getUserShare(res)
@@ -106,9 +110,9 @@ Page({
   // 退出登陆
   backLogin() {
     Dialog.confirm({
-      title: '退出登陆',
-      message: '您是否确定退出登陆，如果退出则不能享受服务！',
-    })
+        title: '退出登陆',
+        message: '您是否确定退出登陆，如果退出则不能享受服务！',
+      })
       .then(() => {
         // on confirm
         wx.removeStorageSync('userinfo')

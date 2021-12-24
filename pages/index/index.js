@@ -1,6 +1,5 @@
 // pages/mainPage/index/index.js
 const db_share = wx.cloud.database().collection('myshare')
-const util =require('../../utils/util')
 Page({
   /**
    * 页面的初始数据
@@ -14,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
     this.getFooedShare()
-    
+
   },
   onPullDownRefresh() {
     this.onLoad()
@@ -26,15 +25,23 @@ Page({
       title: '加载中...',
       cion: 'loading'
     })
-    db_share.get()
-      .then(res => {
-        console.log(res)
-        this.data.ListTemp = res.data
-        this.setData({
-          ListTemp: res.data
-        })
-        wx.hideLoading()
+    // db_share.get()
+    let len = this.data.ListTemp.length
+    console.log(len)
+    wx.cloud.callFunction({ 
+      name: 'getList',
+      data: {
+        len: len
+      }
+    }).then(res => {
+      console.log(res)
+
+      this.data.ListTemp = res.result.list
+      this.setData({
+        ListTemp: res.result.list
       })
+      wx.hideLoading()
+    }).catch(console.error, wx.hideLoading())
   },
   /*跳转详情页 */
   goTopics(event) {

@@ -1,4 +1,7 @@
 # Default ignored files
+/cloudfunction/getList/node_modules/
+/cloudfunction/getList/package-lock.json
+
 /node_modules/
 /miniprogram_npm/
 /shelf/
