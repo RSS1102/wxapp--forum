@@ -1,29 +1,84 @@
+view {
+  box-sizing: border-box;
+}
 
 /* 循环列表 */
-.food-list {
+.list {
   border: 1px solid black;
-  margin: 30px 0;
-  border-radius: 4%;
+  margin: 50rpx 0;
+  border-radius: 8rpx;
+  box-shadow: 0 0 10rpx 0 rgb(129, 126, 126);
 }
 
-text {
+/* text {
   font-weight: bold;
-}
+} */
 
-.food-sharetit {
+/* 头部 */
+.sharetit {
   display: flex;
-  justify-content: center;
-  margin: 10px 0;
-  font-size: 18px;
-  font-weight: bold;
+  line-height: 120rpx;
 }
 
-.food-sharepage {
-  /* 文字自动换行 */
-  word-wrap: break-word;
-  word-break: break-all;
-  white-space: pre-line;
+/* 用户信息 */
+.sharetit-userinfo {
+  border-style: none solid none none;
+  border-width: 1rpx;
+}
+
+.sharetit-avatarUrl {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border: 1rpx solid black;
+  border-radius: 10%;
+}
+
+.sharetit-nickName {
+  font-weight: bold;
+  margin: 0 15rpx 0 15rpx;
+}
+
+/* 文章时间 */
+.sharetit-time {
+  font-size: 25rpx;
+  margin: 0 15rpx 0 15rpx;
+}
+
+/* 文章标题 */
+.shareTit {
+  width: 100%;
+  line-height: 50rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50rpx;
+  /* 文字单行 且超出省略 */
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; */
+  /* 盒子 */
   border-style: solid none solid none;
-  border-width: 1px;
-  padding: 10px 0;
+  border-width: 2rpx;
+  padding: 20rpx 0;
+}
+
+/* 视频 */
+.fileTemp-mp4 {
+  width: 95vw;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 10rpx 0;
+}
+
+/* 图片 */
+.fileTemp-img {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fileTemp-img-item {
+  width: 31vw;
+  height: 350rpx;
+  margin: 10rpx;
 }

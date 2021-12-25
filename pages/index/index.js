@@ -12,34 +12,47 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getFooedShare()
+    // 先清空数组，再重新赋值
+    this.data.ListTemp = []
+    this.getShare()
+    // 获取本分区的文章数量
+    db_share.count()
+    .then(res=>{
+      
+    })
 
   },
+  // 下拉刷新
   onPullDownRefresh() {
     this.onLoad()
   },
+  // 上拉请求数据
+  onReachBottom() {
 
-  /* 应在发布页面添加时间，进行orderBy排序 */
-  getFooedShare() {
+
+  },
+
+  /* 云函数 获取数据*/
+  getShare() {
     wx.showLoading({
       title: '加载中...',
-      cion: 'loading'
+      mask: true,
     })
     // db_share.get()
     let len = this.data.ListTemp.length
     console.log(len)
-    wx.cloud.callFunction({ 
+    wx.cloud.callFunction({
       name: 'getList',
       data: {
         len: len
       }
     }).then(res => {
       console.log(res)
-
-      this.data.ListTemp = res.result.list
+      //拼接数组
       this.setData({
-        ListTemp: res.result.list
+        ListTemp: this.data.ListTemp.concat(res.result.list)
       })
+      console.log(this.data.ListTemp)
       wx.hideLoading()
     }).catch(console.error, wx.hideLoading())
   },

@@ -9,11 +9,10 @@ const _ = db.command;
 const $ = db.command.aggregate
 const db_list = db.collection('myshare')
 
-// 云函数入口函数
+// 云函数入口函数a
 exports.main = async (event, context) => {
     // event.len
     let len = event.len
-
     return await db_list.aggregate()
         .lookup({
             // from: < 要连接的集合名 > ,
@@ -36,7 +35,6 @@ exports.main = async (event, context) => {
                 format: '%Y-%m-%d %H:%M:%S',
                 onNull: '时间出问题了...',
             })
-            // times: '$time'
         })
         .sort({
             time: -1

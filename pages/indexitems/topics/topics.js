@@ -15,7 +15,7 @@ Page({
     // 字符串转为对象
     let pages = JSON.parse(options.str)
     this.setData({
-      foodList: pages
+      ListTemp: pages
     })
     console.log(pages)
   },
