@@ -1,5 +1,6 @@
 <!--pages/user/user.wxml-->
 <van-dialog id="van-dialog" />
+<!-- wx:if判断显示 -->
 <view wx:if="{{!login}}" class="login">
     <view class="login-card">
         <view>欢迎来到这里！</view>
@@ -7,6 +8,7 @@
     </view>
     <van-button custom-class='login-btn' bindtap="onLogin" type="primary">登陆 </van-button>
 </view>
+<!-- 用户已经登陆 -->
 <view wx:else>
     <view class="user-imageItem">
         <image class=" user-image " src="{{userinfo.avatarUrl}}" />

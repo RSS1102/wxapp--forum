@@ -8,10 +8,10 @@
   </view>
   <!-- 内容 -->
   <view class="shareTit" >
-    <text>标题：{{ListTemp.shareTit}}</text>
+    <text>标题：{{item.shareTit}}</text>
   </view>
   <view class="shareTit" >
-    <text>内容：{{ListTemp.shaerPage}}</text>
+    <text>内容：{{item.shaerPage}}</text>
   </view>
   <video wx:if="{{item.fileType=='mp4'}}" src="{{item.fileTemp}}" class="fileTemp-mp4"> </video>
   <!-- 嵌套循环 -->

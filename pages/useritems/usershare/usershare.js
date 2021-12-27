@@ -6,7 +6,7 @@ Page({
    */
   data: {
     ListTemp: [],
-},
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -17,9 +17,9 @@ Page({
     this.getShare()
     // 获取本分区的文章数量
     db_share.count()
-    .then(res=>{
-      
-    })
+      .then(res => {
+
+      })
 
   },
   // 下拉刷新
@@ -40,10 +40,12 @@ Page({
     })
     // db_share.get()
     let len = this.data.ListTemp.length
+    let openid = wx.getStorageSync('userinfo').openid
     console.log(len)
     wx.cloud.callFunction({
-      name: 'getList',
+      name: 'getuserList',
       data: {
+        openid: openid,
         len: len
       }
     }).then(res => {

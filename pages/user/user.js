@@ -1,7 +1,6 @@
 // pages/user/user.js
 const db = wx.cloud.database()
 const db_users = db.collection("users")
-const db_share = db.collection('foodshare')
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
   data: {
@@ -20,8 +19,9 @@ Page({
     })
   },
 
+  /* 用户登录*/
   async onLogin() {
-    // 获取用户新
+    // 获取用户
     await wx.getUserProfile({
       desc: '请登录',
     }).then(res => {
@@ -31,25 +31,25 @@ Page({
         login: true,
         userinfo: this.data.userinfo
       })
-
     }).catch(console.error)
-    //获取用户openID
+    //调用云函数"getopenid"获取用户openID
     await wx.cloud.callFunction({
       name: "getopenid"
     }).then(res => {
       console.log(res.result.openid)
+      // Object.assign合并json对象
       let userinfo = Object.assign(this.data.userinfo, {
         openid: res.result.openid
       })
+      // 储存在本地
       wx.setStorageSync('userinfo', userinfo)
     })
-
-
     console.log(this.data.userinfo)
     /* 
         // 添加添加用户到数据库
         //应先判断数据库是否包含此用户openid
     */
+    //  获取本地用户信息（openid）
     const openid = wx.getStorageSync('userinfo').openid
     db_users.where({
         _openid: openid
@@ -79,32 +79,15 @@ Page({
             }).then(() => {
               console.log('更新成功')
             }).catch(console.error)
-
         }
       })
+  },
 
 
-  },
-  // 个人发布的内容
-  myShare() {
-    const openid = wx.getStorageSync('userinfo').openid
-    console.log(openid)
-    db_share.where({
-        _openid: openid
-      }).get()
-      .then(res => {
-        console.log(res)
-        this.getUserShare(res)
-      })
-  },
   /*个人内容页 */
-  getUserShare(event) {
-    console.log(event)
-    // 对象转为字符串
-    let str = JSON.stringify(event);
-    console.log(str)
+  myShare() {
     wx.navigateTo({
-      url: '/pages/useritems/usershare/usershare?str=' + str,
+      url: '/pages/useritems/usershare/usershare',
     })
   },
   // 退出登陆

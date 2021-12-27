@@ -1,5 +1,5 @@
 // 云函数入口文件
-// 查询所有用户发布的内容
+// 查询用户个人发布的内容
 const cloud = require('wx-server-sdk')
 cloud.init({
     env: "rss-mysql-0ggtqs6y79588e4f"
@@ -13,9 +13,10 @@ const db_list = db.collection('myshare')
 exports.main = async (event, context) => {
     // event.len
     let len = event.len
+    let _openid = event.openid
     return await db_list.aggregate()
         .match({
-            _openid: ''
+            _openid: _openid
         })
         .lookup({
             // from: < 要连接的集合名 > ,
