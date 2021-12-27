@@ -67,5 +67,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //查看图片
+  previewImage(event) {
+    console.log(event),
+      console.log(this.data.ListTemp)
+    wx.previewImage({
+      current: this.data.ListTemp.fileTemp[event.target.dataset.indindex], // 当前显示图片的http链接
+      urls: this.data.ListTemp.fileTemp // 需要预览的图片http链接列表
+    })
   }
 })

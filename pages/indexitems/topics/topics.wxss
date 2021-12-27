@@ -73,12 +73,12 @@ view {
 
 /* 图片 */
 .fileTemp-img {
-  display: flex;
-  justify-content: space-around;
+  /* display: flex; */
+
 }
 
 .fileTemp-img-item {
-  width: 31vw;
-  height: 350rpx;
+  width: 100%;
+  height: 450rpx;
   margin: 10rpx;
 }

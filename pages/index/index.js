@@ -17,9 +17,9 @@ Page({
     this.getShare()
     // 获取本分区的文章数量
     db_share.count()
-    .then(res=>{
-      
-    })
+      .then(res => {
+
+      })
 
   },
   // 下拉刷新
@@ -59,15 +59,23 @@ Page({
   /*跳转详情页 */
   goTopics(event) {
     console.log(event)
-    let bindex = event.currentTarget.dataset.bindex
-    console.log(bindex)
-    let pages = this.data.ListTemp[bindex]
+    let arrindex = event.currentTarget.dataset.arrindex
+    console.log(arrindex)
+    let pages = this.data.ListTemp[arrindex]
     // 对象转为字符串
     let str = JSON.stringify(pages);
     console.log(str)
     wx.navigateTo({
       url: '/pages/indexitems/topics/topics?str=' + str,
     })
+  },
+  //查看图片
+  previewImage(event) {
+    console.log(event),
+      console.log(this.data.ListTemp)
+    wx.previewImage({
+      current: this.data.ListTemp[event.target.dataset.arrindex].fileTemp[event.target.dataset.indindex], // 当前显示图片的http链接
+      urls: this.data.ListTemp[event.target.dataset.arrindex].fileTemp // 需要预览的图片http链接列表
+    })
   }
-
 })

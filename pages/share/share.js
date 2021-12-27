@@ -18,18 +18,23 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) { },
   /**
    * 
    * 1.添加图片：van提供能力，将选中图片push到数组内，然后渲染图片数组
    * --- 通过切换 2.添加视频：发布一个视频
    *  */
   afterRead(event) {
+    this.setData({
+      disabled: true
+    })
+    wx.showLoading({
+      title: '文件上传中...',
+    })
     const {
       file
     } = event.detail;
     console.log(file)
-
     /* 
      *上传图片
      *上传文件到 云储存 
@@ -51,6 +56,21 @@ Page({
       console.log(res.fileID)
       this.data.cloudTemps.push(res.fileID)
       console.log(this.data.cloudTemps)
+      //本地图片数组
+      this.data.fileList.push({
+        ...file,
+        url: file.url
+      });
+      console.log("数据库fileList", this.data.fileList)
+      //完成上传文件
+      wx.hideLoading({
+        success: (res) => {
+          this.setData({
+            fileList: this.data.fileList,
+            disabled: false
+          })
+        },
+      })
     }).catch(console.catch)
     // 视频只能上传一个，图片只能上传三个
     if (file.type == "video") {
@@ -64,14 +84,7 @@ Page({
         accept: 'image'
       })
     }
-    this.data.fileList.push({
-      ...file,
-      url: file.url
-    });
-    console.log("数据库fileList", this.data.fileList)
-    this.setData({
-      fileList: this.data.fileList
-    });
+
   },
   // 删除图片
   deleteImg(event) {
@@ -123,12 +136,12 @@ Page({
     let msg = ''
     this.data.fileList.length ? msg = '你要和大家一起分享属于你的故事吗？' : msg = '你要和大家一起分享属于你的故事吗？ \n (添加图片或视频会更生动哦)'
     Dialog.confirm({
-        title: '分享',
-        message: msg,
-      }).then(() => {
-        // on confirm
-        this.addDatabase()
-      })
+      title: '分享',
+      message: msg,
+    }).then(() => {
+      // on confirm
+      this.addDatabase()
+    })
       .catch(() => {
         // on cancel
         wx.showToast({

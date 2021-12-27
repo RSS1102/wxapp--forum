@@ -7,4 +7,4 @@
     <van-field label='内容：' model:value="{{shaerPage}}" placeholder="内容" border="{{ true }}" type='textarea' show-word-limit='true' maxlength='100' />
 </van-cell-group>
 <van-uploader accept='{{accept}}' class="van-uploader" file-list="{{ fileList }}" bind:delete="deleteImg" max-count="{{maxCount}}" upload-text="图片或视频" bind:after-read="afterRead" max-size='20971520' />
-<van-button class="van-button" type='primary' bindtap="shareDialog">分享故事</van-button>
+<van-button class="van-button" disabled="{{disabled}}" loading="{{disabled}}" type='primary' bind:click="shareDialog">分享故事</van-button>
