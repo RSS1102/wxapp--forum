@@ -2,8 +2,10 @@
 <view wx:key="_id" class="list">
   <view class="sharetit">
     <image class="sharetit-avatarUrl" src="{{ListTemp.userinfo[0].avatarUrl}}"></image>
-    <view class="sharetit-nickName">{{ListTemp.userinfo[0].nickName}}</view>
-    <view class="sharetit-time">{{ListTemp.time}}</view>
+    <view class="sharetit-u">
+      <view class="sharetit-u-nickName">{{ListTemp.userinfo[0].nickName}}</view>
+      <view class="sharetit-u-time">{{ListTemp.time}}</view>
+    </view>
   </view>
   <!-- 内容 -->
   <view class="shareTit">

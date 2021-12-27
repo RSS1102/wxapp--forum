@@ -10,14 +10,10 @@ view {
   box-shadow: 0 0 10rpx 0 rgb(129, 126, 126);
 }
 
-/* text {
-  font-weight: bold;
-} */
-
 /* 头部 */
 .sharetit {
   display: flex;
-  line-height: 120rpx;
+
 }
 
 /* 用户信息 */
@@ -34,15 +30,20 @@ view {
   border-radius: 10%;
 }
 
-.sharetit-nickName {
-  font-weight: bold;
-  margin: 0 15rpx 0 15rpx;
+/* 文章用户姓名和时间 */
+.sharetit-u {
+  line-height: 60rpx;
 }
 
-/* 文章时间 */
-.sharetit-time {
+.sharetit-u-nickName {
+  font-weight: bold;
+  margin: 0 20rpx 0 5rpx;
+}
+
+
+.sharetit-u-time {
   font-size: 25rpx;
-  margin: 0 15rpx 0 15rpx;
+  margin: 0 5rpx0 5rpx;
 }
 
 /* 文章标题 */
@@ -52,11 +53,6 @@ view {
   text-align: center;
   font-weight: bold;
   font-size: 50rpx;
-  /* 文字单行 且超出省略 */
-  /* overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; */
-  /* 盒子 */
   border-style: solid none solid none;
   border-width: 2rpx;
   padding: 20rpx 0;
@@ -81,4 +77,7 @@ view {
   width: 31vw;
   height: 350rpx;
   margin: 10rpx;
+  border-style: solid solid solid solid;
+  border-width: 2rpx;
+  border-color: rgba(63, 129, 216, 0.8);
 }

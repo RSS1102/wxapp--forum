@@ -1,5 +1,5 @@
-view {
-  box-sizing: border-box;
+Page {
+  overflow-x: hidden;
 }
 
 /* 循环列表 */
@@ -34,16 +34,21 @@ view {
   border-radius: 10%;
 }
 
-.sharetit-nickName {
-  font-weight: bold;
-  margin: 0 15rpx 0 15rpx;
+/* 文章用户姓名和时间 */
+.sharetit-u {
+  line-height: 60rpx;
 }
 
-/* 文章时间 */
-.sharetit-time {
-  font-size: 25rpx;
-  margin: 0 15rpx 0 15rpx;
+.sharetit-u-nickName {
+  font-weight: bold;
+  margin: 0 20rpx 0 5rpx;
 }
+
+.sharetit-u-time {
+  font-size: 25rpx;
+  margin: 0 5rpx0 5rpx;
+}
+
 
 /* 文章标题 */
 .shareTit {
@@ -73,12 +78,20 @@ view {
 
 /* 图片 */
 .fileTemp-img {
-  /* display: flex; */
-
+  margin: 0;
+  padding: 0;
+  width: 745rpx;
+  text-align: center;
+  border-style: none solid solid solid;
+  border-width: 1rpx;
 }
 
 .fileTemp-img-item {
-  width: 100%;
-  height: 450rpx;
+  width: 700rpx;
+  height: 500rpx;
   margin: 10rpx;
+  display: inline-block;
+  border-style: solid solid solid solid;
+  border-width: 2rpx;
+  border-color: rgba(63, 129, 216, 0.8);
 }
