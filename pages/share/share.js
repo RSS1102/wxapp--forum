@@ -18,7 +18,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { },
+  onLoad: function (options) {},
   /**
    * 
    * 1.添加图片：van提供能力，将选中图片push到数组内，然后渲染图片数组
@@ -123,6 +123,15 @@ Page({
   2.添加二次确定按钮，防止用户操作失误发布
    */
   shareDialog() {
+    // 如果未登录应该提示
+    let userinfo = wx.getStorageSync('userinfo')
+    if (!userinfo) {
+      wx.showToast({
+        title: '您还未登录...',
+        icon: 'error',
+      })
+      return
+    }
     // 当文字内容有未填写的，应拒绝发布，并提示
     //废弃 || !this.data.fileList.length
     if (!Boolean(this.data.shaerPage) || !Boolean(this.data.shareTit)) {
@@ -136,12 +145,12 @@ Page({
     let msg = ''
     this.data.fileList.length ? msg = '你要和大家一起分享属于你的故事吗？' : msg = '你要和大家一起分享属于你的故事吗？ \n (添加图片或视频会更生动哦)'
     Dialog.confirm({
-      title: '分享',
-      message: msg,
-    }).then(() => {
-      // on confirm
-      this.addDatabase()
-    })
+        title: '分享',
+        message: msg,
+      }).then(() => {
+        // on confirm
+        this.addDatabase()
+      })
       .catch(() => {
         // on cancel
         wx.showToast({

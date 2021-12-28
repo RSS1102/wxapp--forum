@@ -1,36 +1,30 @@
 {
-    "setting": {},
-    "condition": {
-        "plugin": {
-            "list": []
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
         },
-        "game": {
-            "list": []
-        },
-        "gamePlugin": {
-            "list": []
-        },
-        "miniprogram": {
-            "list": [
-                {
-                    "name": "pages/user/user",
-                    "pathName": "pages/user/user",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/index/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/share/share",
-                    "query": "",
-                    "scene": null
-                }
-            ]
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
         }
+      ]
     }
+  }
 }

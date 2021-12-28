@@ -10,10 +10,6 @@ Page {
   box-shadow: 0 0 10rpx 0 rgb(129, 126, 126);
 }
 
-/* text {
-  font-weight: bold;
-} */
-
 /* 头部 */
 .sharetit {
   display: flex;
@@ -49,7 +45,6 @@ Page {
   margin: 0 5rpx0 5rpx;
 }
 
-
 /* 文章标题 */
 .shareTit {
   width: 100%;
@@ -57,10 +52,16 @@ Page {
   text-align: center;
   font-weight: bold;
   font-size: 50rpx;
-  /* 文字单行 且超出省略 */
-  /* overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; */
+  /* 盒子 */
+  border-style: solid none solid none;
+  border-width: 2rpx;
+  padding: 20rpx 0;
+}
+
+/* 文章内容 */
+.sharePage {
+  width: 100%;
+  font-size: 36rpx;
   /* 盒子 */
   border-style: solid none solid none;
   border-width: 2rpx;
@@ -95,3 +96,8 @@ Page {
   border-width: 2rpx;
   border-color: rgba(63, 129, 216, 0.8);
 }
+
+/* 文字单行 且超出省略 */
+/* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; */

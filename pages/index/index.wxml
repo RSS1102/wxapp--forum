@@ -1,19 +1,37 @@
 <!-- 用户发布内容展示 -->
-<view wx:for="{{ListTemp}}" wx:key="_id" class="list" data-item="{{item}}" wx:for-index="arrindex" bindtap="goTopics" data-arrindex='{{arrindex}}'>
-  <view class="sharetit">
-    <image class="sharetit-avatarUrl" src="{{item.userinfo[0].avatarUrl}}"></image>
-    <view class="sharetit-u">
-      <view class="sharetit-u-nickName">{{item.userinfo[0].nickName}}</view>
-      <view class="sharetit-u-time">{{item.time}}</view>
+
+<view wx:for="{{ListTemp}}" wx:key="_id" class="list" data-item="{{item}}" wx:for-index="arrindex">
+  <!-- 跳转详情页 -->
+  <view bindtap="goTopics" data-arrindex='{{arrindex}}'>
+    <view class="sharetit">
+      <image class="sharetit-avatarUrl" src="{{item.userinfo[0].avatarUrl}}"></image>
+      <view class="sharetit-u">
+        <view class="sharetit-u-nickName">{{item.userinfo[0].nickName}}</view>
+        <view class="sharetit-u-time">{{item.time}}</view>
+      </view>
+    </view>
+    <view class="shareTit">
+      <text>{{item.shareTit}}</text>
+    </view>
+    <video wx:if="{{item.fileType=='mp4'}}" src="{{item.fileTemp}}" class="fileTemp-mp4"> </video>
+    <!-- 嵌套循环 -->
+    <view wx:else class="fileTemp-img">
+      <image catchtap="previewImage" wx:for="{{item.fileTemp}}" wx:key="item" src="{{item}}" class="fileTemp-img-item"
+        wx:for-index="indindex" data-indindex='{{indindex}}' data-arrindex='{{arrindex}}'></image>
     </view>
   </view>
-  <!-- 跳转详情页 -->
-  <view class="shareTit">
-    <text>{{item.shareTit}}</text>
-  </view>
-  <video wx:if="{{item.fileType=='mp4'}}" src="{{item.fileTemp}}" class="fileTemp-mp4"> </video>
-  <!-- 嵌套循环 -->
-  <view wx:else class="fileTemp-img">
-    <image catchtap="previewImage" wx:for="{{item.fileTemp}}" wx:key="item" src="{{item}}" class="fileTemp-img-item" wx:for-index="indindex" data-indindex='{{indindex}}' data-arrindex='{{arrindex}}'></image>
+  <view class="tp">
+    <view class="tp-box" bindtap="setPraise" data-item="{{item}}">
+      <image class="tp-cion" src="{{praise?'../../img/tp/on_good.png':'../../img/tp/un_good.png'}}"></image>
+      <view class="tp-praise-num">1</view>
+    </view>
+    <view class="tp-box" bindtap="goTopics" data-arrindex='{{arrindex}}'>
+      <image class="tp-cion" src="../../img/tp/un_good.png"></image>
+      <view class="tp-praise-num">1</view>
+    </view>
+    <view class="tp-box">
+      <image class="tp-cion" src="../../img/tp/un_good.png"></image>
+      <view class="tp-praise-num">1</view>
+    </view>
   </view>
 </view>

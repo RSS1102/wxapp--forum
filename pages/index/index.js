@@ -58,6 +58,15 @@ Page({
   },
   /*跳转详情页 */
   goTopics(event) {
+    // 如果未登录应该提示
+    let userinfo = wx.getStorageSync('userinfo')
+    if (!userinfo) {
+      wx.showToast({
+        title: '您还未登录...',
+        icon: 'error',
+      })
+      return
+    }
     console.log(event)
     let arrindex = event.currentTarget.dataset.arrindex
     console.log(arrindex)
@@ -77,5 +86,19 @@ Page({
       current: this.data.ListTemp[event.target.dataset.arrindex].fileTemp[event.target.dataset.indindex], // 当前显示图片的http链接
       urls: this.data.ListTemp[event.target.dataset.arrindex].fileTemp // 需要预览的图片http链接列表
     })
+  },
+  // 点赞事件
+  setPraise(event) {
+    // 如果未登录应该提示
+    let userinfo = wx.getStorageSync('userinfo')
+    if (!userinfo) {
+      wx.showToast({
+        title: '您还未登录...',
+        icon: 'error',
+      })
+      return
+    }
+    console.log(event)
+
   }
 })
