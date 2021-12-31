@@ -7,14 +7,14 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command;
 const $ = db.command.aggregate
-const db_list = db.collection('myshare')
+const db_myshare = db.collection('myshare')
 
 // 云函数入口函数a
 exports.main = async (event, context) => {
     // event.len
     let len = event.len
     let _openid = event.openid
-    return await db_list.aggregate()
+    return await db_myshare.aggregate()
         .match({
             _openid: _openid
         })

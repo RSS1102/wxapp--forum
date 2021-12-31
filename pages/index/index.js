@@ -1,5 +1,7 @@
 // pages/mainPage/index/index.js
 const db_share = wx.cloud.database().collection('myshare')
+const db_pagezan = wx.cloud.database().collection('pagezan')
+
 Page({
   /**
    * 页面的初始数据
@@ -99,6 +101,36 @@ Page({
       return
     }
     console.log(event)
-
+    /*
+    ** 赋值
+    * @param Page 点赞按钮触发
+    * @param item:文章信息
+    * @param openid：用户id
+    * @param index:文章下标
+    * @param isZan:是否点赞
+    * @param zanNumber:点赞数量
+     */
+    let openId = userinfo.openid;
+    let Page = event.currentTarget.dataset;
+    let index = Page.index;
+    let item = Page.item;
+    let Zan, isZan, zanNumbers;
+    // 对值得操作
+    try {
+      Zan = wx.getStorageSync('Zan')
+    } catch (e) { console.log(e) }
+    if (!Object.keys(Zan).length) {
+      wx.setStorageSync('Zan', { isZan: item.isZan, zanNumbers: item.zanNumbers })
+      Zan = wx.getStorageSync('Zan')
+    }
+    Zan.isZan ? zanNumbers = Zan.zanNumbers - 1 : zanNumbers = Zan.zanNumbers + 1
+    isZan = !Zan.isZan
+    wx.setStorageSync('Zan', { isZan: isZan, zanNumbers: zanNumbers })
+    // 视图更新
+    this.setData({
+      [`ListTemp[${index}].isZan`]: isZan,
+      [`ListTemp[${index}].zanNumbers`]: zanNumbers
+    })
+    // 防抖 wx.removeStorageSync('Zan')
   }
 })
