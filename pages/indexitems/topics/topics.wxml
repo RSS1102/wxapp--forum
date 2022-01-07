@@ -1,5 +1,6 @@
 <!-- 用户发布内容展示 -->
 <view wx:key="_id" class="list">
+  <!-- 用户 -->
   <view class="sharetit">
     <image class="sharetit-avatarUrl" src="{{ListTemp.userinfo[0].avatarUrl}}"></image>
     <view class="sharetit-u">
@@ -14,11 +15,20 @@
   <view class="sharePage">
     <text decode="true" space="ensp">&ensp;&ensp;&ensp;&ensp;{{ListTemp.shaerPage}}</text>
   </view>
-  <video wx:if="{{item.fileType=='mp4'}}" src="{{ListTemp.fileTemp}}" class="fileTemp-mp4" wx:for-index="indindex"
-    data-indindex='{{indindex}}'> </video>
+  <video wx:if="{{item.fileType=='mp4'}}" src="{{ListTemp.fileTemp}}" class="fileTemp-mp4" wx:for-index="indindex" data-indindex='{{indindex}}'> </video>
   <!-- 嵌套循环 -->
   <view wx:else class="fileTemp-img">
     <image wx:for="{{ListTemp.fileTemp}}" wx:key="item" src="{{item}}" class="fileTemp-img-item" bindtap="previewImage">
     </image>
   </view>
 </view>
+<!-- 留言 -->
+<!-- 发送留言 -->
+<button bindtap="showPopup">留言</button>
+<van-popup show="{{ popupshow }}" safe-area-inset-top='true' position="bottom" bind:close="onClose">
+  <!-- <van-button type="primary" size='mini'>留言</van-button> -->
+  <van-field type="textarea" auto-focus autosize maxlength='60' show-word-limit value="{{ value }}" placeholder="请善意表达您的思想" border="true" bind:change="onChange" >
+    <van-icon slot="left-icon" name="smile-o" class="left-icon" bindtap="emoShow" />
+    <van-icon slot="right-icon" name="home-o" bindtap="sendMag" />
+  </van-field>
+</van-popup>

@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    popupshow: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -73,5 +74,25 @@ Page({
       current: this.data.ListTemp.fileTemp[event.target.dataset.indindex], // 当前显示图片的http链接
       urls: this.data.ListTemp.fileTemp // 需要预览的图片http链接列表
     })
+  },
+  //打开，关闭弹出层 
+  showPopup() {
+    this.setData({
+      popupshow: true
+    });
+  },
+  onClose() {
+    this.setData({
+      popupshow: false
+    });
+  },
+  emoShow() {
+    wx.showToast({
+      title: '还没有定义表情',
+      icon: 'none'
+    })
+  },
+  sendMag() {
+    console.log('确定')
   }
 })

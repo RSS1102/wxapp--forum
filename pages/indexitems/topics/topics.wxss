@@ -101,3 +101,7 @@ Page {
 /* overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; */
+/* van-popup 弹出层 */
+.left-icon {
+  margin:0 6px 17px 0;
+}
