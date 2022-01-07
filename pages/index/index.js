@@ -1,6 +1,7 @@
 // pages/mainPage/index/index.js
 const db_share = wx.cloud.database().collection('myshare')
 const db_pagezan = wx.cloud.database().collection('pagezan')
+import tools from '../../utils/tools/tools'
 
 Page({
   /**
@@ -14,14 +15,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // this.debounce = this.debounce()
     // 先清空数组，再重新赋值
     this.data.ListTemp = []
     this.getShare()
-    // 获取本分区的文章数量
-    db_share.count()
-      .then(res => {
+    // // 获取本分区的文章数量
+    // db_share.count()
+    //   .then(res => {
 
-      })
+    //   })
 
   },
   // 下拉刷新
@@ -102,35 +104,68 @@ Page({
     }
     console.log(event)
     /*
-    ** 赋值
-    * @param Page 点赞按钮触发
-    * @param item:文章信息
-    * @param openid：用户id
-    * @param index:文章下标
-    * @param isZan:是否点赞
-    * @param zanNumber:点赞数量
+     ** 赋值
+     * @param Page 点赞按钮触发
+     * @param item:文章信息
+     * @param openid：用户id
+     * @param index:文章下标
+     * @param isZan:是否点赞
+     * @param zanNumber:点赞数量
      */
-    let openId = userinfo.openid;
+    // let openId = userinfo.openid;
     let Page = event.currentTarget.dataset;
     let index = Page.index;
     let item = Page.item;
-    let Zan, isZan, zanNumbers;
+    let pageId = item._id;
+    let zanNum = item.zanNum
+    let Zan, isZan;
+    console.log(zanNum)
     // 对值得操作
     try {
       Zan = wx.getStorageSync('Zan')
-    } catch (e) { console.log(e) }
-    if (!Object.keys(Zan).length) {
-      wx.setStorageSync('Zan', { isZan: item.isZan, zanNumbers: item.zanNumbers })
-      Zan = wx.getStorageSync('Zan')
+    } catch (e) {
+      console.log(e)
     }
-    Zan.isZan ? zanNumbers = Zan.zanNumbers - 1 : zanNumbers = Zan.zanNumbers + 1
+    if (!Object.keys(Zan).length) {
+      wx.setStorageSync('Zan', {
+        isZan: item.isZan,
+        zanNum: item.zanNum
+      })
+      Zan = wx.getStorageSync('Zan')
+      Zan.isZan ? zanNum =zanNum - 1 : zanNum =zanNum + 1
+    }else{
+      Zan.isZan ? zanNum = Zan.zanNum - 1 : zanNum = Zan.zanNum + 1
+    }
     isZan = !Zan.isZan
-    wx.setStorageSync('Zan', { isZan: isZan, zanNumbers: zanNumbers })
+    console.log(zanNum)
+    wx.setStorageSync('Zan', {
+      isZan: isZan,
+      zanNum: zanNum
+    })
     // 视图更新
     this.setData({
       [`ListTemp[${index}].isZan`]: isZan,
-      [`ListTemp[${index}].zanNumbers`]: zanNumbers
+      [`ListTemp[${index}].zanNum`]: zanNum
     })
     // 防抖 wx.removeStorageSync('Zan')
-  }
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
+    this.timer = setTimeout(() => {
+      wx.removeStorageSync('Zan')
+      // 点赞云函数
+      wx.cloud.callFunction({
+        name: 'pagezan',
+        data: {
+          pageId: pageId,
+          isZan: isZan
+        }
+      }).then(res => {
+        console.log(res)
+      }).catch(console.error())
+    }, 500)
+  },
+
+
+  sharePage() {}
 })

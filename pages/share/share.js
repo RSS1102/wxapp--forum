@@ -175,6 +175,7 @@ Page({
         // 将云储存的内容地址添加到数据库内
         fileTemp: this.data.cloudTemps,
         // 文件类型
+        zanNumbers:0,
         fileType: this.urlType,
         time: time
       }

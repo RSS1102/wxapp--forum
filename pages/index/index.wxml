@@ -2,7 +2,7 @@
 
 <view wx:for="{{ListTemp}}" wx:key="_id" class="list" data-item="{{item}}" wx:for-index="arrindex">
   <!-- 跳转详情页 -->
-  <view bindtap="goTopics" data-index='{{arrindex}}'>
+  <view bindtap="goTopics" data-arrindex='{{arrindex}}'>
     <view class="sharetit">
       <image class="sharetit-avatarUrl" src="{{item.userinfo[0].avatarUrl}}"></image>
       <view class="sharetit-u">
@@ -22,14 +22,14 @@
   <view class="tp">
     <view class="tp-box" bindtap="setPraise" data-item="{{item}}" data-index='{{arrindex}}'>
       <image class="tp-cion" src="{{item.isZan?'../../img/tp/on_good.png':'../../img/tp/un_good.png'}}"></image>
-      <view class="tp-praise-num">{{item.zanNumbers}}</view>
+      <view class="tp-praise-num">{{item.zanNum}}</view>
     </view>
     <view class="tp-box" bindtap="goTopics" data-arrindex='{{arrindex}}'>
-      <image class="tp-cion" src="../../img/tp/un_good.png"></image>
+      <image class="tp-cion" src="../../img/tp/massage.png"></image>
       <view class="tp-praise-num">1</view>
     </view>
     <view class="tp-box">
-      <image class="tp-cion" src="../../img/tp/un_good.png"></image>
+      <image class="tp-cion" src="../../img/tp/share.png"></image>
       <view class="tp-praise-num">1</view>
     </view>
   </view>

@@ -2,6 +2,9 @@
 /cloudfunction/getList/node_modules/
 /cloudfunction/getList/package-lock.json
 
+/cloudfunction/pagezan/node_modules/
+/cloudfunction/pagezan/package-lock.json
+
 /node_modules/
 /miniprogram_npm/
 /shelf/
